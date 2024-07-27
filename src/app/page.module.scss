@@ -1,0 +1,71 @@
+.body {
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 500%;
+    margin: 0;
+}
+
+.mainPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    width: 100%;
+}
+
+.cartDiv {
+    width: 2.5%;
+    border-right: 3px solid;
+}
+
+.userAvatarDiv {
+    width: 2.5%;
+    border-right: 3px solid;
+    margin-right: 0.3%;
+}
+
+.cart {
+    width: 100%;
+}
+
+.userAvatar {
+    width: 100%;
+    margin-right: 100%;
+}
+
+.search {
+    display: flex;
+    width: 30%;
+    height: 10%;
+    border-radius: 50px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+}
+
+.searchIcon {
+    width: 7%;
+    margin-left: 0.5%;
+}
+
+.searchField {
+    align-self: center;
+    align-content: center;
+    border-left: 3px solid;
+    height: 2.5em;
+    width: 100%;
+
+    p {
+        margin: 0 0 0 1%;
+        font-size: 170%;
+    }
+}
