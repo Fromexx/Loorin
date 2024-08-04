@@ -2,7 +2,7 @@ import styles from "./page.module.scss";
 
 export default function Home() {
     return (
-        <body className={styles.body} >
+        <main className={styles.main} >
             <div className={styles.header}>
                 <h1 className={styles.title}>Loorin</h1>
             </div>
@@ -24,6 +24,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </body>
+        </main>
     )
 }
