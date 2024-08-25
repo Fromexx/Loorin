@@ -1,0 +1,34 @@
+.ProductsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ProductCart {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    margin-left: 3%;
+    margin-top: 2%;
+    color: black;
+}
+
+.ProductTitle {
+    font-size: 1em;
+}
+
+.ProductImage {
+    width: 60%;
+    height: auto;
+}
+
+.ProductPrice {
+    font-size: 1em;
+}

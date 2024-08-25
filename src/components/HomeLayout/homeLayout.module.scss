@@ -1,0 +1,158 @@
+.main {
+    position: absolute;
+    width: 100%;
+    right: 0.01%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 5em;
+    margin: 0;
+}
+
+.mainPanel {
+    display: flex;
+    justify-content: center;
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+    width: 100%;
+}
+
+.cartDiv {
+    display: flex;
+    align-items: center;
+    width: 2.5%;
+    margin-right: 0.3%;
+}
+
+.userAvatarDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3%;
+    border-left: 3px solid;
+    border-right: 3px solid;
+    margin-right: 0.3%;
+}
+
+.cart {
+    width: 100%;
+    height: auto;
+}
+
+.userAvatar {
+    width: 85%;
+    height: auto;
+}
+
+.search {
+    display: flex;
+    width: 20%;
+    border-radius: 50px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    margin-top: 0.3%;
+    margin-bottom: 0.3%;
+}
+
+.searchIcon {
+    width: 12%;
+    height: auto;
+    margin-left: 0.5%;
+}
+
+.searchField {
+    align-content: center;
+    border-left: 3px solid;
+    width: 100%;
+
+    p {
+        margin: 0 0 0 1%;
+        font-size: 170%;
+    }
+}
+
+.burgerMenuInactive {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    left: 35%;
+    z-index: 1;
+}
+
+.burgerMenuActive {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    left: 35%;
+    z-index: 1;
+
+    .bar {
+        &:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            background-color: white;
+        }
+        &:nth-child(2) {
+            opacity: 0;
+        }
+        &:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            background-color: white;
+        }
+    }
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: 0.3s;
+    background-color: black;
+}
+
+.headerMenu {
+    display: flex;
+    position: fixed;
+    height: 100%;
+    background-color: black;
+    top: 0;
+    right: 0;
+    width: 0;
+    gap: 0;
+    padding-top: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    right: -20%;
+    transition-property: right;
+    transition-duration: 0.5s;
+}
+
+.headerMenuItem {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    transition: 0.3s;
+    display: block;
+    padding: 8px;
+}
+
+.ProductsSection {
+    font-size: 1.5em;
+    margin-left: 2%;
+    margin-top: 2%;
+    font-weight: 300;
+    margin-bottom: 0;
+}
