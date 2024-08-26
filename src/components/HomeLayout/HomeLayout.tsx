@@ -48,7 +48,7 @@ export default function Homelayout({ params }: {
     return (
         <main className={styles.main} >
             <div className={styles.header}>
-                <h1 className={styles.title}>Loorin</h1>
+                <Link href={"/"} className={styles.titleLink} ><h1 className={styles.title}>Loorin</h1></Link>
             </div>
             
             <div className={styles.mainPanel} >
