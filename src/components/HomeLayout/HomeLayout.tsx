@@ -8,11 +8,27 @@ import { ClothesTypes } from "@/utils/data/ClothesTypesBase";
 import { Recommendations } from "@/utils/data/RecommendationsBase";
 import { TShirts } from "@/utils/data/TShirtsBase";
 import { Hoodies } from "@/utils/data/HoodiesBase";
+import { useComponentWillMount } from "@/utils/helpers/ComponentWillMount";
+
+let clothesTypes: React.JSX.Element[];
+let productsBase;
 
 export default function Homelayout({ params }: {
     params: { productsSection: string };
 }) {
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
+
+    const Init = () => {
+        clothesTypes = [];
+
+        for(let element of ClothesTypes) {
+            clothesTypes.push(<Link href={`/${element[0]}`} className={styles.headerMenuItem} >{element[1]}</Link>);
+        }
+    
+        if(params.productsSection == "Рекомендации") productsBase = Recommendations;
+        else if(params.productsSection == "Футболки") productsBase = TShirts;
+        else if(params.productsSection == "Худи") productsBase = Hoodies;
+    }
 
     const burgerMenuClicked = () => {
         const element = document.getElementById("headerMenu");
@@ -27,17 +43,7 @@ export default function Homelayout({ params }: {
         setBurgerMenuActive(!burgerMenuActive);
     }
 
-    const clothesTypes = [];
-
-    for(let element of ClothesTypes) {
-        clothesTypes.push(<Link href={`/${element[0]}`} className={styles.headerMenuItem} >{element[1]}</Link>);
-    }
-
-    let productsBase;
-
-    if(params.productsSection == "Рекомендации") productsBase = Recommendations;
-    else if(params.productsSection == "Футболки") productsBase = TShirts;
-    else if(params.productsSection == "Худи") productsBase = Hoodies;
+    useComponentWillMount(Init);
 
     return (
         <main className={styles.main} >
@@ -69,7 +75,7 @@ export default function Homelayout({ params }: {
                 </div>
                 
                 <nav className={styles.headerMenu} id="headerMenu" >
-                    {clothesTypes}
+                    {React.Children.toArray(clothesTypes)}
                 </nav>
             </div>
 

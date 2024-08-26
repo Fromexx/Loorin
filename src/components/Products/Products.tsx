@@ -5,6 +5,7 @@ import React from "react";
 export default function Products({ params }: {
     params: { productsBase: { title: string; image: string; price: number; }[] }; 
 }) {
+
     return (
         <div className={styles.ProductsContainer}>
             {React.Children.toArray(params.productsBase.map(product => (
