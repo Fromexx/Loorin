@@ -4,14 +4,14 @@ import Products from "@/components/Products/Products";
 import styles from "./homeLayout.module.scss";
 import React, { useState } from "react";
 import Link from "next/link";
-import { ClothesTypes } from "@/utils/data/ClothesTypesBase";
+import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { Recommendations } from "@/utils/data/RecommendationsBase";
 import { TShirts } from "@/utils/data/TShirtsBase";
 import { Hoodies } from "@/utils/data/HoodiesBase";
 import { useComponentWillMount } from "@/utils/helpers/ComponentWillMount";
 
-let clothesTypes: React.JSX.Element[];
 let productsBase;
+const BURGER_MENU_ID = "burgerMenu";
 
 export default function Homelayout({ params }: {
     params: { productsSection: string };
@@ -19,19 +19,13 @@ export default function Homelayout({ params }: {
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
 
     const Init = () => {
-        clothesTypes = [];
-
-        for(let element of ClothesTypes) {
-            clothesTypes.push(<Link href={`/${element[0]}`} className={styles.headerMenuItem} >{element[1]}</Link>);
-        }
-    
         if(params.productsSection == "Рекомендации") productsBase = Recommendations;
-        else if(params.productsSection == "Футболки") productsBase = TShirts;
-        else if(params.productsSection == "Худи") productsBase = Hoodies;
+        else if(params.productsSection == ClothesTypesEnum["T-Shirts"]) productsBase = TShirts;
+        else if(params.productsSection == ClothesTypesEnum.Hoodies) productsBase = Hoodies;
     }
 
     const burgerMenuClicked = () => {
-        const element = document.getElementById("headerMenu");
+        const element = document.getElementById(BURGER_MENU_ID);
 
         if(burgerMenuActive) {
             element?.setAttribute('style', 'right: -20%');
@@ -68,14 +62,16 @@ export default function Homelayout({ params }: {
                     </div>
                 </div>
 
-                <div className={burgerMenuActive ? styles.burgerMenuActive : styles.burgerMenuInactive} onClick={burgerMenuClicked} >
+                <div className={burgerMenuActive ? styles.burgerMenuButtonActive : styles.burgerMenuButtonInactive} onClick={burgerMenuClicked} >
                     <span className={styles.bar} />
                     <span className={styles.bar} />
                     <span className={styles.bar} />
                 </div>
                 
-                <nav className={styles.headerMenu} id="headerMenu" >
-                    {React.Children.toArray(clothesTypes)}
+                <nav className={styles.burgerMenu} id={`${BURGER_MENU_ID}`} >
+                    {React.Children.toArray(Object.entries(ClothesTypesEnum).map(([key, value]) => (
+                        <Link href={`/${key}`} className={styles.burgerMenuItem} >{value}</Link>
+                    )))}
                 </nav>
             </div>
 

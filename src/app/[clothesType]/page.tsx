@@ -1,13 +1,14 @@
 import Homelayout from "@/components/HomeLayout/HomeLayout";
 import { notFound } from "next/navigation";
-import { ClothesTypes } from "@/utils/data/ClothesTypesBase";
+import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
+import { GetEnumValue } from "@/utils/helpers/EnumHelpers";
 
 export default function ClothesTypePage({ params }: {
     params: { clothesType: string };
 }) {
-    if(!ClothesTypes.has(params.clothesType)) notFound();
+    if(!(params.clothesType in ClothesTypesEnum)) notFound();
 
     return (
-        <Homelayout params={{productsSection: ClothesTypes.get(params.clothesType)!}} />
+        <Homelayout params={{productsSection: GetEnumValue(ClothesTypesEnum, params.clothesType)!}} />
     )
 }

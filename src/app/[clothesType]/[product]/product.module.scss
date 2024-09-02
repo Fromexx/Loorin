@@ -1,0 +1,40 @@
+.main {
+    position: absolute;
+    width: 100%;
+    right: 0.01%;
+}
+
+.upperPanel {
+    width: 100%;
+    height: auto;
+    border-bottom: 3px solid;
+}
+
+.backButton {
+    width: 3%;
+    height: auto;
+    margin-left: 1%;
+    cursor: pointer;
+}
+
+.productImage {
+    display: block;
+    width: 20%;
+    height: auto;
+    margin: 2% auto 0 auto;
+}
+
+.productInfoTable {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 1% auto 0 auto;
+    width: 50%;
+
+}
+
+.dataName {
+    width: 15%;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 1%;
+}

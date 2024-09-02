@@ -1,32 +1,64 @@
+import { ClothesTypesEnum } from "../helpers/ClothesTypesEnum";
+
 export const TShirts = [
     {
         title: "Футболка черная",
         image: "/images/BlackTShirt.jpg",
-        price: 1850
+        price: 1850,
+        type: ClothesTypesEnum["T-Shirts"],
+        art: "001",
+        material: "Хлопок 100%",
+        sizes: ["M", "L", "XL"],
+        colors: ["Черный", "Белый"],
     },
     {
         title: "Футболка белая",
         image: "/images/BlackTShirt.jpg",
-        price: 2000
+        price: 2000,
+        type: ClothesTypesEnum["T-Shirts"],
+        art: "002",
+        material: "Хлопок 100%",
+        sizes: ["M", "L", "XL"],
+        colors: ["Черный", "Белый"],
     },
     {
         title: "Футболка желтая",
         image: "/images/BlackTShirt.jpg",
-        price: 1999
+        price: 1999,
+        type: ClothesTypesEnum["T-Shirts"],
+        art: "003",
+        material: "Хлопок 100%",
+        sizes: ["M", "L", "XL"],
+        colors: ["Черный", "Белый"],
     },
     {
         title: "Футболка красная",
         image: "/images/BlackTShirt.jpg",
-        price: 3499
+        price: 3499,
+        type: ClothesTypesEnum["T-Shirts"],
+        art: "004",
+        material: "Хлопок 100%",
+        sizes: ["M", "L", "XL"],
+        colors: ["Черный", "Белый"],
     },
     {
         title: "Футболка зеленая",
         image: "/images/BlackTShirt.jpg",
-        price: 699
+        price: 699,
+        type: ClothesTypesEnum["T-Shirts"],
+        art: "005",
+        material: "Хлопок 100%",
+        sizes: ["M", "L", "XL"],
+        colors: ["Черный", "Белый"],
     },
     {
         title: "Футболка фиолетовая",
         image: "/images/BlackTShirt.jpg",
-        price: 2766
+        price: 2766,
+        type: ClothesTypesEnum["T-Shirts"],
+        art: "006",
+        material: "Хлопок 100%",
+        sizes: ["M", "L", "XL"],
+        colors: ["Черный", "Белый"],
     }
 ]
