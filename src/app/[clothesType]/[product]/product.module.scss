@@ -5,16 +5,36 @@
 }
 
 .upperPanel {
+    display: flex;
+    flex-direction: row;
     width: 100%;
     height: auto;
-    border-bottom: 3px solid;
+    border-bottom: 3px solid black;
+}
+
+.backButtonContainer {
+    width: 3%;
+    margin-top: 0.3%;
 }
 
 .backButton {
-    width: 3%;
+    width: 100%;
     height: auto;
-    margin-left: 1%;
+    margin-left: 20%;
     cursor: pointer;
+}
+
+.productTitleContainer {
+    display: flex;
+    border-left: 3px solid black;
+    align-items: center;
+    margin-left: 1.2%;
+    width: 50%;
+}
+
+.productTitle {
+    font-size: 2em;
+    margin: 0 0 0 1.2%;
 }
 
 .productImage {

@@ -58,17 +58,17 @@ export default function ProductPage() {
     return (
         <main className={styles.main} >
             <div className={styles.upperPanel} >
-                <Link href={previousPath} ><img className={styles.backButton} src="/images/Back.png" /></Link>
+                <div className={styles.backButtonContainer} >
+                    <Link href={previousPath} ><img className={styles.backButton} src="/images/Back.png" /></Link>
+                </div>
+
+                <div className={styles.productTitleContainer} ><p className={styles.productTitle} >{productData?.title}</p></div>
             </div>
 
             <img src="/images/BlackTShirt.jpg" className={styles.productImage} />
 
             <table className={styles.productInfoTable} >
                 <tbody>
-                    <tr>
-                        <td className={styles.dataName} >Название</td>
-                        <td className={styles.dataValue} >{productData?.title}</td>
-                    </tr>
                     <tr>
                         <td className={styles.dataName} >Цена</td>
                         <td className={styles.dataValue} >{productData?.price} р.</td>
