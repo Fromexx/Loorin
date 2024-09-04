@@ -1,18 +1,27 @@
 'use client'
 
 import styles from "./product.module.scss";
-import { notFound, useRouter } from "next/navigation";
+import { notFound, useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { GetEnumKey } from "@/utils/helpers/EnumHelpers";
 import { TShirts } from "@/utils/data/TShirtsBase";
 import { Hoodies } from "@/utils/data/HoodiesBase";
 import React from "react";
+import Link from "next/link";
 
-export default function ProductPage({ params }: {
-    params: {product: number};
-}) {
+let selectedSize;
+let selectedColor;
+let selectedSizeElement: HTMLElement | null;
+let selectedColorElement: HTMLElement | null;
+
+export default function ProductPage() {
     const [isClient, setIsClient] = useState(false)
+    const router = useRouter()
+    const pathname = usePathname();
+
+    const previousPath = pathname.slice(0, pathname.lastIndexOf('/'));
+    console.log(previousPath);
 
     useEffect(() => {
         setIsClient(true)
@@ -28,12 +37,28 @@ export default function ProductPage({ params }: {
         }
     }
 
-    const router = useRouter();
+    const SizeOptionClicked = (size: string, id: string) => {
+        selectedSizeElement?.setAttribute('style', 'border: 1px solid black');
+
+        selectedSize = size;
+        selectedSizeElement = document.getElementById(id);
+
+        selectedSizeElement?.setAttribute('style', 'border: 2px solid black');
+    }
+
+    const ColorOptionClicked = (color: string, id: string) => {
+        selectedColorElement?.setAttribute('style', 'border: 1px solid black');
+        
+        selectedColor = color;
+        selectedColorElement = document.getElementById(id);
+
+        selectedColorElement?.setAttribute('style', 'border: 2px solid black');
+    }
 
     return (
         <main className={styles.main} >
             <div className={styles.upperPanel} >
-                <img onClick={() => router.back()} className={styles.backButton} src="/images/Back.png" />
+                <Link href={previousPath} ><img className={styles.backButton} src="/images/Back.png" /></Link>
             </div>
 
             <img src="/images/BlackTShirt.jpg" className={styles.productImage} />
@@ -42,30 +67,48 @@ export default function ProductPage({ params }: {
                 <tbody>
                     <tr>
                         <td className={styles.dataName} >Название</td>
-                        <td>{productData?.title}</td>
+                        <td className={styles.dataValue} >{productData?.title}</td>
                     </tr>
                     <tr>
                         <td className={styles.dataName} >Цена</td>
-                        <td>{productData?.price} р.</td>
+                        <td className={styles.dataValue} >{productData?.price} р.</td>
                     </tr>
                     <tr>
                         <td className={styles.dataName} >Состав</td>
-                        <td>{productData?.material}</td>
+                        <td className={styles.dataValue} >{productData?.material}</td>
                     </tr>
                     <tr>
                         <td className={styles.dataName} >Размер</td>
-                        <td>{React.Children.toArray(productData?.sizes.map(size => size + ";"))}</td>
+                        <td className={styles.dataOptionValue} >
+                            <div className={styles.options} >
+                                {React.Children.toArray(productData?.sizes.map(size => 
+                                <div className={styles.productOption} id={`${size}Option`} onClick={() => {
+                                    let id = size + "Option";
+                                    SizeOptionClicked(size, id)
+                                }} >{size}</div>))}
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td className={styles.dataName} >Цвет</td>
-                        <td>{React.Children.toArray(productData?.colors.map(color => color + ";"))}</td>
+                        <td className={styles.dataOptionValue} >
+                            <div className={styles.options} >
+                                {React.Children.toArray(productData?.colors.map(color => 
+                                <div className={styles.productOption} id={`${color}Option`} onClick={() => {
+                                    let id = color + "Option";
+                                    ColorOptionClicked(color, id)
+                                }} >{color}</div>))}
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td className={styles.dataName} >Оценка</td>
-                        <td>4,9</td>
+                        <td className={styles.dataValue} >4,9</td>
                     </tr>
                 </tbody>
             </table>
+
+            <button className={styles.addToCartButton} >В корзину</button>
         </main>
     )
 }
