@@ -1,7 +1,10 @@
 import Homelayout from "@/components/HomeLayout/HomeLayout";
+import { Providers } from "@/components/Providers";
 
 export default function Home() {
     return (
-        <Homelayout params={{productsSection:"Рекомендации"}} />
+        <Providers>
+            <Homelayout params={{productsSection:"Рекомендации"}} />
+        </Providers>
     )
 }

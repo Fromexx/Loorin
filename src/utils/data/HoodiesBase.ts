@@ -10,6 +10,7 @@ export const Hoodies = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     },
     {
         title: "Худи белая",
@@ -20,6 +21,7 @@ export const Hoodies = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     },
     {
         title: "Худи желтая",
@@ -30,6 +32,7 @@ export const Hoodies = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     },
     {
         title: "Худи красная",
@@ -40,6 +43,7 @@ export const Hoodies = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     },
     {
         title: "Худи зеленая",
@@ -50,6 +54,7 @@ export const Hoodies = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     },
     {
         title: "Худи фиолетовая",
@@ -60,5 +65,6 @@ export const Hoodies = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     }
 ]

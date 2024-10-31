@@ -1,0 +1,118 @@
+.upperPanel {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    border-bottom: 3px solid black;
+}
+
+.backButtonContainer {
+    width: 3%;
+    margin-top: 0.3%;
+}
+
+.backButton {
+    width: 100%;
+    height: auto;
+    margin-left: 20%;
+    cursor: pointer;
+}
+
+.pageNameContainer {
+    display: flex;
+    border-left: 3px solid black;
+    align-items: center;
+    margin-left: 1.2%;
+    width: 50%;
+}
+
+.pageName {
+    font-size: 2em;
+    margin: 0 0 0 1.2%;
+}
+
+.productOrder {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 2% auto 0 auto;
+}
+
+.deleteProductButton {
+    display: flex;
+    width: 2%;
+    border: 2px solid black;
+    border-bottom: 0;
+
+    &:hover {
+        background-color: rgb(245, 9, 9);
+    }
+}
+
+.deleteProductImage {
+    width: 100%;
+    height: auto;
+}
+
+.productCard {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 2px solid black;
+}
+
+.productImageContainer {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    border-right: 2px solid black;
+}
+
+.productImage {
+    width: 70%;
+    height: auto;
+    padding: 10%;
+}
+
+.productInfoTable {
+    border-collapse: collapse;
+    width: 25%;
+}
+
+.dataName {
+    font-size: 1.1vw;
+    font-weight: bold;
+    padding: 3%;
+}
+
+.dataValue {
+    font-size: 1.1vw;
+    padding: 1%;
+    height: 1px;
+}
+
+.designDescription {
+    width: 35%;
+    font-size: 1.2vw;
+    padding: 1%;
+}
+
+.wrapper {
+    width: 60%;
+    margin: auto;
+}
+
+.buyButton {
+    display: block;
+    width: 100%;
+    border: 2px solid black;
+    border-top: 0;
+    text-align: center;
+    font-size: 2vw;
+    cursor: pointer;
+    background-color: white;
+
+    &:active {
+        transform: scale(0.98);
+    }
+}

@@ -1,7 +1,7 @@
 'use client'
 
 import styles from "./product.module.scss";
-import { notFound, useRouter, usePathname } from "next/navigation";
+import { notFound, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { GetEnumKey } from "@/utils/helpers/EnumHelpers";
@@ -9,25 +9,43 @@ import { TShirts } from "@/utils/data/TShirtsBase";
 import { Hoodies } from "@/utils/data/HoodiesBase";
 import React from "react";
 import Link from "next/link";
+import { ProductCartAdding } from "@/services/ProductCartAdding";
+import { ProductDataType } from "@/utils/helpers/Types";
 
-let selectedSize;
-let selectedColor;
+let selectedSize: string;
+let selectedColor: string;
 let selectedSizeElement: HTMLElement | null;
 let selectedColorElement: HTMLElement | null;
+let productData: ProductDataType;
+
+const SizeOptionClicked = (size: string, id: string) => {
+    selectedSizeElement?.setAttribute('style', 'border: 1px solid black');
+
+    selectedSize = size;
+    selectedSizeElement = document.getElementById(id);
+    console.log(selectedSizeElement);
+
+    selectedSizeElement?.setAttribute('style', 'border: 2px solid black');
+}
+
+const ColorOptionClicked = (color: string, id: string) => {
+    selectedColorElement?.setAttribute('style', 'border: 1px solid black');
+    
+    selectedColor = color;
+    selectedColorElement = document.getElementById(id);
+
+    selectedColorElement?.setAttribute('style', 'border: 2px solid black');
+}
 
 export default function ProductPage() {
-    const [isClient, setIsClient] = useState(false)
-    const router = useRouter()
+    const [isClient, SetIsClient] = useState(false)
     const pathname = usePathname();
-
     const previousPath = pathname.slice(0, pathname.lastIndexOf('/'));
-    console.log(previousPath);
 
     useEffect(() => {
-        setIsClient(true)
+        SetIsClient(true)
     }, [])
 
-    let productData;
 
     if(isClient) {
         productData = GetProductData(window.location.pathname);
@@ -37,26 +55,8 @@ export default function ProductPage() {
         }
     }
 
-    const SizeOptionClicked = (size: string, id: string) => {
-        selectedSizeElement?.setAttribute('style', 'border: 1px solid black');
-
-        selectedSize = size;
-        selectedSizeElement = document.getElementById(id);
-
-        selectedSizeElement?.setAttribute('style', 'border: 2px solid black');
-    }
-
-    const ColorOptionClicked = (color: string, id: string) => {
-        selectedColorElement?.setAttribute('style', 'border: 1px solid black');
-        
-        selectedColor = color;
-        selectedColorElement = document.getElementById(id);
-
-        selectedColorElement?.setAttribute('style', 'border: 2px solid black');
-    }
-
     return (
-        <main className={styles.main} >
+        <main>
             <div className={styles.upperPanel} >
                 <div className={styles.backButtonContainer} >
                     <Link href={previousPath} ><img className={styles.backButton} src="/images/Back.png" /></Link>
@@ -81,11 +81,13 @@ export default function ProductPage() {
                         <td className={styles.dataName} >Размер</td>
                         <td className={styles.dataOptionValue} >
                             <div className={styles.options} >
-                                {React.Children.toArray(productData?.sizes.map(size => 
-                                <div className={styles.productOption} id={`${size}Option`} onClick={() => {
-                                    let id = size + "Option";
-                                    SizeOptionClicked(size, id)
-                                }} >{size}</div>))}
+                                {React.Children.toArray(productData?.sizes.map(size =>
+                                    <div className={styles.productOption} id={`${size}Option`} onClick={() => {
+                                        let id = size + "Option";
+                                        SizeOptionClicked(size, id)}} >
+                                        {size}
+                                    </div>
+                                ))}
                             </div>
                         </td>
                     </tr>
@@ -93,11 +95,13 @@ export default function ProductPage() {
                         <td className={styles.dataName} >Цвет</td>
                         <td className={styles.dataOptionValue} >
                             <div className={styles.options} >
-                                {React.Children.toArray(productData?.colors.map(color => 
-                                <div className={styles.productOption} id={`${color}Option`} onClick={() => {
-                                    let id = color + "Option";
-                                    ColorOptionClicked(color, id)
-                                }} >{color}</div>))}
+                                {React.Children.toArray(productData?.colors.map(color =>
+                                    <div className={styles.productOption} id={`${color}Option`} onClick={() => {
+                                        let id = color + "Option";
+                                        ColorOptionClicked(color, id)}} >
+                                        {color}
+                                    </div>
+                                ))}
                             </div>
                         </td>
                     </tr>
@@ -108,7 +112,13 @@ export default function ProductPage() {
                 </tbody>
             </table>
 
-            <button className={styles.addToCartButton} >В корзину</button>
+            <button className={styles.addToCartButton} onClick={() => {
+                if(selectedSize == undefined || selectedColor == undefined) {
+                    console.log("Выберите размер и цвет одежды!");
+                    return;
+                }
+                ProductCartAdding(productData, selectedSize, selectedColor);
+            }} >В корзину</button>
         </main>
     )
 }

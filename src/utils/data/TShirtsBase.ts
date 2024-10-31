@@ -10,6 +10,7 @@ export const TShirts = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     },
     {
         title: "Футболка белая",
@@ -20,6 +21,7 @@ export const TShirts = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     },
     {
         title: "Футболка желтая",
@@ -30,6 +32,7 @@ export const TShirts = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     },
     {
         title: "Футболка красная",
@@ -40,6 +43,7 @@ export const TShirts = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     },
     {
         title: "Футболка зеленая",
@@ -50,6 +54,7 @@ export const TShirts = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     },
     {
         title: "Футболка фиолетовая",
@@ -60,5 +65,6 @@ export const TShirts = [
         material: "Хлопок 100%",
         sizes: ["M", "L", "XL"],
         colors: ["Черный", "Белый"],
+        description: "Описание дизайна: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quae eligendi iure quibusdam delectus odit voluptatibus! Excepturi, quas. Illo, libero numquam! Dolorem ullam fugiat non harum enim adipisci facilis voluptas.",
     }
 ]

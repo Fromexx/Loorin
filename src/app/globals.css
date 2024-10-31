@@ -2,6 +2,14 @@ body {
     margin: 0;
 }
 
-td {
+tr {
     border: 1px solid black;
+}
+
+td {
+    border-right: 1px solid black;
+}
+
+button {
+    user-select: none;
 }

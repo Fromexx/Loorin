@@ -4,9 +4,10 @@ import React from "react";
 import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { GetEnumKey } from "@/utils/helpers/EnumHelpers";
 import { Recommendations } from "@/utils/data/RecommendationsBase";
+import { ProductsBaseType } from "@/utils/helpers/Types";
 
 export default function Products({ params }: {
-    params: { productsBase:  typeof Recommendations};
+    params: { productsBase: ProductsBaseType};
 }) {
     return (
         <div className={styles.ProductsContainer}>

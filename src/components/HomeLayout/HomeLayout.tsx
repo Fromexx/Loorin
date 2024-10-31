@@ -4,19 +4,26 @@ import Products from "@/components/Products/Products";
 import styles from "./homeLayout.module.scss";
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { Recommendations } from "@/utils/data/RecommendationsBase";
 import { TShirts } from "@/utils/data/TShirtsBase";
 import { Hoodies } from "@/utils/data/HoodiesBase";
 import { useComponentWillMount } from "@/utils/helpers/ComponentWillMount";
+import { ProductsBaseType } from "@/utils/helpers/Types";
+import { Dialog } from "../AccountEnterModal/AccountWelcomeModal";
 
-let productsBase;
+let productsBase: ProductsBaseType;
 const BURGER_MENU_ID = "burgerMenu";
 
 export default function Homelayout({ params }: {
     params: { productsSection: string };
 }) {
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
+    const [isModalActive, SetModalActive] = useState(false);
+    //const session = useSession();
+    const { push } = useRouter();
 
     const Init = () => {
         if(params.productsSection == "Рекомендации") productsBase = Recommendations;
@@ -37,20 +44,37 @@ export default function Homelayout({ params }: {
         setBurgerMenuActive(!burgerMenuActive);
     }
 
+    const onClose = () => {
+        SetModalActive(false);
+    }
+
     useComponentWillMount(Init);
 
     return (
-        <main className={styles.main} >
+        <main>
+            <Dialog onClose={onClose} isActive={isModalActive} />
+
             <div className={styles.header}>
                 <Link href={"/"} className={styles.titleLink} ><h1 className={styles.title}>Loorin</h1></Link>
             </div>
             
             <div className={styles.mainPanel} >
-                <div className={styles.cartDiv} >
+                <Link href={"/cart"} className={styles.cartDiv} >
                     <img className={styles.cart} src="/images/Cart.png" />
-                </div>
+                </Link>
 
-                <div className={styles.userAvatarDiv} >
+                <div className={styles.userAvatarDiv} onClick={() => {
+                    // console.log(session?.data);
+
+                    // if(session?.data) {
+                    //     push("/profile");
+                    // }
+                    // else {
+                    //     SetModalActive(true);
+                    // }
+
+                    SetModalActive(true);
+                }} >
                     <img className={styles.userAvatar} src="/images/UserAvatar.png" />
                 </div>
 
