@@ -1,4 +1,3 @@
-import { TShirts } from "@/utils/data/TShirtsBase";
 import { ConcreteProductType, ProductDataType } from "@/utils/helpers/Types";
 import { OrdersBase } from "@/utils/data/OrdersBase";
 

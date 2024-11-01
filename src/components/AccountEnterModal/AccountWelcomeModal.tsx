@@ -2,6 +2,8 @@
 
 import { useRef, useState, useEffect } from "react";
 import styles from "./dialog.module.scss";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 type Props = {
     onClose: () => void,
@@ -12,6 +14,26 @@ export function Dialog({ onClose, isActive }: Props) {
     const modalRef = useRef<null | HTMLDialogElement>(null);
     let welcomeModal: JSX.Element;
     const [modal, setModal] = useState(null);
+    const [error, setError] = useState("");
+    const { push } = useRouter();
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+        e.preventDefault();
+        const _target = e.target as any;
+        const email = _target.email.value;
+        const password = _target.password.value;
+        const result = await signIn("credentials", {
+            email,
+            password,
+            redirect: false,
+        });
+            if (result?.error) {
+                setError(result.error);
+            } 
+            else {
+                push("/profile");
+            }
+    };
 
     welcomeModal = (
         <dialog ref={modalRef} className={styles.dialog}>
@@ -49,7 +71,7 @@ export function Dialog({ onClose, isActive }: Props) {
                     </div>
                 </div>
                 <div className={styles.mainContainer} >
-                    <form className={styles.loginForm} >
+                    <form className={styles.loginForm} onSubmit={handleSubmit} >
                         <input className={styles.inputField} type="text" name="email" placeholder="Введите почту" required />
                         <input className={styles.inputField} type="password" name="password" placeholder="Введите пароль" required />
 

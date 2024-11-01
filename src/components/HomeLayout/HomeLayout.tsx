@@ -5,7 +5,6 @@ import styles from "./homeLayout.module.scss";
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { Recommendations } from "@/utils/data/RecommendationsBase";
 import { TShirts } from "@/utils/data/TShirtsBase";
@@ -22,7 +21,6 @@ export default function Homelayout({ params }: {
 }) {
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
     const [isModalActive, SetModalActive] = useState(false);
-    //const session = useSession();
     const { push } = useRouter();
 
     const Init = () => {
@@ -64,15 +62,6 @@ export default function Homelayout({ params }: {
                 </Link>
 
                 <div className={styles.userAvatarDiv} onClick={() => {
-                    // console.log(session?.data);
-
-                    // if(session?.data) {
-                    //     push("/profile");
-                    // }
-                    // else {
-                    //     SetModalActive(true);
-                    // }
-
                     SetModalActive(true);
                 }} >
                     <img className={styles.userAvatar} src="/images/UserAvatar.png" />
