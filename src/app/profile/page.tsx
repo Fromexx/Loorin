@@ -1,11 +1,10 @@
 import styles from "./profile.module.scss";
-import { authConfig } from "../../../configs/auth";
-import { getServerSession } from "next-auth";
+import { GetUser } from "@/api/data/user";
 
 export default async function Profile() {
-    const session = await getServerSession(authConfig);
-
+    const user = await GetUser();
+    
     return (
-        <p>Profile of {session?.user?.name}</p>
+        <p>Profile of {user.name}</p>
     )
 }

@@ -35,3 +35,8 @@ export type ConcreteProductType = {
     color: string;
     description: string;
 };
+
+export type ConcreteUserType = {
+    email: string;
+    name: string;
+}

@@ -5,6 +5,7 @@ module.exports = {
     experimental: {
         serverActions: {
             serverActionsBodySizeLimit: "4mb"
-        }
+        },
+        scrollRestoration: true,
     }
 }

@@ -4,14 +4,13 @@ import Products from "@/components/Products/Products";
 import styles from "./homeLayout.module.scss";
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { Recommendations } from "@/utils/data/RecommendationsBase";
 import { TShirts } from "@/utils/data/TShirtsBase";
 import { Hoodies } from "@/utils/data/HoodiesBase";
 import { useComponentWillMount } from "@/utils/helpers/ComponentWillMount";
 import { ProductsBaseType } from "@/utils/helpers/Types";
-import { Dialog } from "../AccountEnterModal/AccountWelcomeModal";
+import { Modal } from "../AccountEnterModal/AccountEnterModal";
 
 let productsBase: ProductsBaseType;
 const BURGER_MENU_ID = "burgerMenu";
@@ -21,7 +20,6 @@ export default function Homelayout({ params }: {
 }) {
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
     const [isModalActive, SetModalActive] = useState(false);
-    const { push } = useRouter();
 
     const Init = () => {
         if(params.productsSection == "Рекомендации") productsBase = Recommendations;
@@ -50,7 +48,7 @@ export default function Homelayout({ params }: {
 
     return (
         <main>
-            <Dialog onClose={onClose} isActive={isModalActive} />
+            <Modal onClose={onClose} isActive={isModalActive} />
 
             <div className={styles.header}>
                 <Link href={"/"} className={styles.titleLink} ><h1 className={styles.title}>Loorin</h1></Link>
@@ -61,9 +59,7 @@ export default function Homelayout({ params }: {
                     <img className={styles.cart} src="/images/Cart.png" />
                 </Link>
 
-                <div className={styles.userAvatarDiv} onClick={() => {
-                    SetModalActive(true);
-                }} >
+                <div className={styles.userAvatarDiv} onClick={() => {SetModalActive(true)}} >
                     <img className={styles.userAvatar} src="/images/UserAvatar.png" />
                 </div>
 
