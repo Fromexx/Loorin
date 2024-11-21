@@ -2,15 +2,16 @@
 
 import { SignupFormSchema, SigninFormSchema, SignupFormState, SinginFormState } from "../api/lib/definitions";
 import { redirect } from "next/navigation";
-import { createSession, deleteSession } from "@/api/lib/session";
-import { GetUserByEmail, AddUser } from "@/api/data/DataBaseActions";
+import { createSession } from "@/api/lib/session";
+import { GetUserByEmail, AddUser } from "@/api/data/UsersDataBaseActions";
+import { AuthTypeController, AuthType } from "@/utils/data/AuthType";
 
 export async function Signup(state: SignupFormState, formData: FormData) {
     const validatedFields = SignupFormSchema.safeParse({
         name: formData.get('name'),
         email: formData.get('email'),
         password: formData.get('password'),
-    });
+    }); 
 
     if (!validatedFields.success) {
         return { errors: validatedFields.error.flatten().fieldErrors }
@@ -28,12 +29,13 @@ export async function Signup(state: SignupFormState, formData: FormData) {
     }
     catch(error) {
         if(error.name == "PrismaClientKnownRequestError") {
-            return { error: "Пользователь с такой почтой уже существует." }
+            return { emailUserAlreadyExist: "Пользователь с такой почтой уже существует." }
         }
     }
 
-    await createSession(user.id);
+    AuthTypeController.SetAuthType(AuthType.User);
 
+    await createSession(user.id);
     redirect('/profile');
 }
 
@@ -55,12 +57,8 @@ export async function Signin(state: SinginFormState, formData: FormData) {
         return { incorrectDataError : "Неправильная почта или пароль." }
     }
 
+    AuthTypeController.SetAuthType(AuthType.User);
+
     await createSession(user.id);
-
     redirect('/profile');
-}
-
-export async function Logout() {
-    deleteSession();
-    redirect('/');
 }

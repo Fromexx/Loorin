@@ -2,7 +2,7 @@
 
 import Products from "@/components/Products/Products";
 import styles from "./homeLayout.module.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { Recommendations } from "@/utils/data/RecommendationsBase";
@@ -11,20 +11,35 @@ import { Hoodies } from "@/utils/data/HoodiesBase";
 import { useComponentWillMount } from "@/utils/helpers/ComponentWillMount";
 import { ProductsBaseType } from "@/utils/helpers/Types";
 import { Modal } from "../AccountEnterModal/AccountEnterModal";
+import { verifySession } from "@/api/lib/session";
+import { useRouter } from "next/navigation";
 
 let productsBase: ProductsBaseType;
 const BURGER_MENU_ID = "burgerMenu";
 
-export default function Homelayout({ params }: {
+export function Homelayout({ params }: {
     params: { productsSection: string };
 }) {
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
     const [isModalActive, SetModalActive] = useState(false);
+    const [userImage, SetUserImage] = useState(null);
+    const { push } = useRouter();
+
+    useEffect(() => {
+        verifySession().then((result) => {
+            if(!result.userId) SetUserImage("/images/UnauthorizedUserImage.png");
+            else SetUserImage("/images/Search.png");
+        });
+    }, []);
 
     const Init = () => {
         if(params.productsSection == "Рекомендации") productsBase = Recommendations;
         else if(params.productsSection == ClothesTypesEnum["T-Shirts"]) productsBase = TShirts;
         else if(params.productsSection == ClothesTypesEnum.Hoodies) productsBase = Hoodies;
+    }
+
+    const onClose = () => {
+        SetModalActive(false);
     }
 
     const burgerMenuClicked = () => {
@@ -38,10 +53,6 @@ export default function Homelayout({ params }: {
         }
 
         setBurgerMenuActive(!burgerMenuActive);
-    }
-
-    const onClose = () => {
-        SetModalActive(false);
     }
 
     useComponentWillMount(Init);
@@ -59,8 +70,12 @@ export default function Homelayout({ params }: {
                     <img className={styles.cart} src="/images/Cart.png" />
                 </Link>
 
-                <div className={styles.userAvatarDiv} onClick={() => {SetModalActive(true)}} >
-                    <img className={styles.userAvatar} src="/images/UserAvatar.png" />
+                <div className={styles.userAvatarDiv} onClick={async () => {
+                    const session = await verifySession();
+                    if(!session.userId) SetModalActive(true);
+                    else push('/profile');
+                }}>
+                    <img className={styles.userAvatar} src={userImage} />
                 </div>
 
                 <div className={styles.search} >

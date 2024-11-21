@@ -1,11 +1,26 @@
+'use server'
+
 import { verifySession } from "../lib/session";
-import { cache } from "react";
 import { ConcreteUserType } from "@/utils/helpers/Types";
-import { GetUserById } from "./DataBaseActions";
+import { GetUserById } from "./UsersDataBaseActions";
+import { AuthTypeController } from "@/utils/data/AuthType";
+import { authConfig } from "../../../configs/auth";
+import { getServerSession } from "next-auth";
 
 export async function GetUser() {
-    const session = await verifySession();
-    const user = await GetUserById(session.userId.toString());
+    let user: ConcreteUserType = { name: null, email: null, };
+
+    if(AuthTypeController.IsUserAuthType()) {
+        const session = await verifySession();
+        if(!session.userId) return null;
+        user = await GetUserById(session.userId.toString());
+    }
+    
+    else if(AuthTypeController.IsProviderAuthType()) {
+        const session = await getServerSession(authConfig);
+        user.name = session.user.name;
+        user.email = session.user.email;
+    }
 
     return userDTO(user);
 }

@@ -9,7 +9,7 @@ export const SignupFormSchema = z.object({
     password: z
         .string()
         .min(4, { message: "Be at least 4 characters long." })
-        .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
+        .regex(/[a-zA-Zа-яА-Я]/, { message: "Contain at least one letter." })
         .regex(/[0-9]/, { message: "Contain at least one number." })
         .trim(),
 })
@@ -28,6 +28,7 @@ export type SignupFormState =
             password?: string[]
         }
         message?: string
+        emailUserAlreadyExist?: string
     }
     | undefined
 

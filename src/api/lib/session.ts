@@ -53,13 +53,10 @@ export async function createSession(userId: string) {
 }
 
 export async function verifySession() {
-    const currentCookie = cookies().get(cookie.name)?.value
+    const currentCookie = cookies().get(cookie.name)?.value;
     const session = await decrypt(currentCookie);
 
-    if(!session?.userId) {
-        redirect("/")
-    }
-    return { userId: session.userId };
+    return { userId: session?.userId };
 }
 
 export async function deleteSession() {

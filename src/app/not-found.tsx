@@ -1,3 +1,11 @@
+import { Providers } from "@/components/Providers"
+
 export default function NotFound() {
-    return <div>not-found</div>
+    return (
+        <main>
+            <div>
+                <p>not-found</p>
+            </div>
+        </main>
+    )
 }

@@ -23,7 +23,6 @@ const SizeOptionClicked = (size: string, id: string) => {
 
     selectedSize = size;
     selectedSizeElement = document.getElementById(id);
-    console.log(selectedSizeElement);
 
     selectedSizeElement?.setAttribute('style', 'border: 2px solid black');
 }
@@ -113,10 +112,7 @@ export default function ProductPage() {
             </table>
 
             <button className={styles.addToCartButton} onClick={() => {
-                if(selectedSize == undefined || selectedColor == undefined) {
-                    console.log("Выберите размер и цвет одежды!");
-                    return;
-                }
+                if(selectedSize == undefined || selectedColor == undefined) return;
                 ProductCartAdding(productData, selectedSize, selectedColor);
             }} >В корзину</button>
         </main>

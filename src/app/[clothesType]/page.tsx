@@ -1,4 +1,4 @@
-import Homelayout from "@/components/HomeLayout/HomeLayout";
+import { Homelayout } from "@/components/HomeLayout/HomeLayout";
 import { notFound } from "next/navigation";
 import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { GetEnumValue } from "@/utils/helpers/EnumHelpers";

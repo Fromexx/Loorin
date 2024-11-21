@@ -1,4 +1,4 @@
-import Homelayout from "@/components/HomeLayout/HomeLayout";
+import { Homelayout } from "@/components/HomeLayout/HomeLayout";
 import { Providers } from "@/components/Providers";
 
 export default function Home() {

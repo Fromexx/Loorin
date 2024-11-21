@@ -1,5 +1,5 @@
 import styles from "./dialog.module.scss";
-import { Signup } from "@/services/AuthActions";
+import { Signup } from "@/services/UserAuthActions";
 import { useActionState } from "react";
 import React from "react";
 
@@ -23,6 +23,7 @@ export function RegisterModal({ onClose }: Props) {
                 <form className={styles.loginForm} action={action} >
                     <input className={styles.inputField} type="text" name="email" placeholder="Введите почту" />
                     {state?.errors?.email && <p className={styles.errorText} >{state.errors.email}</p>}
+                    {state?.emailUserAlreadyExist && <p className={styles.errorText} >{state.emailUserAlreadyExist}</p>}
                     <input className={styles.inputField} type="text" name="name" placeholder="Введите имя" />
                     {state?.errors?.name && <p className={styles.errorText} >{state.errors.name}</p>}
                     <input className={styles.inputField} type="password" name="password" placeholder="Введите пароль" />
