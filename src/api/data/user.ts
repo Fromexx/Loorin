@@ -13,7 +13,7 @@ export async function GetUser() {
     if(AuthTypeController.IsUserAuthType()) {
         const session = await verifySession();
         if(!session.userId) return null;
-        user = await GetUserById(session.userId.toString());
+        user = await GetUserById(Number(session.userId));
     }
     
     else if(AuthTypeController.IsProviderAuthType()) {

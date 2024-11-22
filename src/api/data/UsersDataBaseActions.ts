@@ -1,4 +1,4 @@
-import { PrismaClient } from "../../../prisma/generated/userClient";
+import { PrismaClient } from "@prisma/client";
 
 export async function GetUserByEmail(email: string) {
     const client = new PrismaClient();
@@ -11,7 +11,7 @@ export async function GetUserByEmail(email: string) {
     return user;
 }
 
-export async function GetUserById(id: string) {
+export async function GetUserById(id: number) {
     const client = new PrismaClient();
 
     const user = await client.user.findUnique({
@@ -22,10 +22,10 @@ export async function GetUserById(id: string) {
     return user;
 }
 
-export async function AddUser(id: string, name: string, email: string, hashedPassword: string) {
+export async function AddUser(name: string, email: string, hashedPassword: string) {
     const client = new PrismaClient();
 
-    let user = await client.user.create({ data: { id: id, name: name, email: email, hashedPassword: hashedPassword },
+    let user = await client.user.create({ data: { name: name, email: email, hashedPassword: hashedPassword },
                                 select: { id: true }});
 
     return user;

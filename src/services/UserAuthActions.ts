@@ -20,12 +20,11 @@ export async function Signup(state: SignupFormState, formData: FormData) {
     const { name, email, password } = validatedFields.data;
     let bcrypt = require('bcryptjs');
     const hashedPassword = await bcrypt.hash(password, 10);
-    const id = Math.round(Math.random()*(10)).toString();
 
     let user;
 
     try {
-        user = await AddUser(id, name, email, hashedPassword);
+        user = await AddUser(name, email, hashedPassword);
     }
     catch(error) {
         if(error.name == "PrismaClientKnownRequestError") {

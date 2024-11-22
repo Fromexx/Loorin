@@ -1,5 +1,3 @@
-import { PrismaClient } from "../../../prisma/generated/providerClient";
-
 export async function GetUserByEmail(email: string) {
     const client = new PrismaClient();
 
