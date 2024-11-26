@@ -2,25 +2,27 @@
 
 import { authConfig } from "../../configs/auth";
 import { getServerSession } from "next-auth";
-import { GetUserByEmail, AddUser } from "@/api/data/ProvidersDataBaseActions";
+import { GetUserByEmail, AddUser } from "@/api/data/DataBaseActions";
 import { redirect } from "next/navigation";
-import { AuthType, AuthTypeController } from "@/utils/data/AuthType";
+import { deleteAuthParams } from "@/api/lib/authParams";
 
 export async function Signin() {
+    deleteAuthParams();
+
     const session = await getServerSession(authConfig);
     const { name, email } = session.user;
-    const id = Math.round(Math.random()*(10)).toString();
 
     try {
-        await AddUser(id, name, email);
+        console.log("AddUser");
+        await AddUser(name, email);
     }
     catch(error) {
+        console.log(error);
         if(error.name == "PrismaClientKnownRequestError") {
-            GetUserByEmail(email);
+            console.log("Concrete error");
+            await GetUserByEmail(email);
         }
     }
-
-    AuthTypeController.SetAuthType(AuthType.Provider);
 
     redirect('/profile');
 }

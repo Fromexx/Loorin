@@ -2,24 +2,25 @@
 
 import { Signin } from "@/services/ProviderAuthActions";
 import { useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { signOut } from "next-auth/react";
+import NotFound from "../not-found";
+import Loading from "../loading";
+import { isCookieSet } from "@/api/lib/authParams";
 
 export default function Gateway() {
     useEffect(() => {
         const Actions = async () => {
-            await Signin();
+            if(isCookieSet()) {
+                await Signin();
+            }
         }
 
         Actions();
     }, []);
 
-    const { data: session, status } = useSession()
+    
 
-    console.log(session);
-    console.log(status);
-
-    return (
-        <button onClick={() => signOut()}>Sign Out</button>
-    )
+    if(isCookieSet())
+        return <Loading/>
+    else
+        return <NotFound/>
 }

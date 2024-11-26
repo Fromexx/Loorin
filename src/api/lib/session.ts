@@ -3,7 +3,6 @@
 import 'server-only'
 import { JWTPayload, SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
-import { redirect } from 'next/navigation';
 
 const secretKey = process.env.SESSION_SECRET
 const encodedKey = new TextEncoder().encode(secretKey)
@@ -16,7 +15,7 @@ const cookie = {
         sameSite: "lax",
         path: "/",
     },
-    duration: 24 * 60 * 60 * 1000,
+    duration: 30* 24 * 60 * 60 * 1000, // 30 days
 }
 
 export async function encrypt(payload: JWTPayload) {
@@ -44,12 +43,12 @@ export async function createSession(userId: number) {
     const session = await encrypt({ userId, expires });
 
     cookies().set(cookie.name, session, {
-            httpOnly: true,
-            secure: true,
-            expires: expires,
-            sameSite: 'lax',
-            path: '/',
-        });
+        httpOnly: true,
+        secure: true,
+        expires: expires,
+        sameSite: 'lax',
+        path: '/',
+    });
 }
 
 export async function verifySession() {

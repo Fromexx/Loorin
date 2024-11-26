@@ -22,11 +22,9 @@ export async function GetUserById(id: number) {
     return user;
 }
 
-export async function AddUser(name: string, email: string, hashedPassword: string) {
+export async function AddUser(name: string, email: string, hashedPassword?: string) {
     const client = new PrismaClient();
 
-    let user = await client.user.create({ data: { name: name, email: email, hashedPassword: hashedPassword },
+    return await client.user.create({ data: { name: name, email: email, hashedPassword: hashedPassword },
                                 select: { id: true }});
-
-    return user;
 }

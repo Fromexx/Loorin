@@ -1,7 +1,8 @@
 import styles from "./dialog.module.scss";
 import { Signin } from "@/services/UserAuthActions";
 import { useActionState } from "react";
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import { CreateAuthParams } from "@/utils/helpers/CreateAuthParamsHelper";
 
 type Props = {
     onClose: () => void,
@@ -41,6 +42,7 @@ export function LoginModal({ onClose }: Props) {
                     <div className={styles.societyContainer} >
                         <button onClick={async () => {
                             try {
+                                await CreateAuthParams()
                                 await signIn("github", { callbackUrl: "/gateway" });
                             }
                             catch (error) {

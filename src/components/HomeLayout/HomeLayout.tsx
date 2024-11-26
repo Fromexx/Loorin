@@ -2,7 +2,7 @@
 
 import Products from "@/components/Products/Products";
 import styles from "./homeLayout.module.scss";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { Recommendations } from "@/utils/data/RecommendationsBase";
@@ -13,6 +13,7 @@ import { ProductsBaseType } from "@/utils/helpers/Types";
 import { Modal } from "../AccountEnterModal/AccountEnterModal";
 import { verifySession } from "@/api/lib/session";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 let productsBase: ProductsBaseType;
 const BURGER_MENU_ID = "burgerMenu";
@@ -24,13 +25,19 @@ export function Homelayout({ params }: {
     const [isModalActive, SetModalActive] = useState(false);
     const [userImage, SetUserImage] = useState(null);
     const { push } = useRouter();
+    const { data: session } = useSession();
+    const isAuthRef = useRef(false);
 
     useEffect(() => {
-        verifySession().then((result) => {
-            if(!result.userId) SetUserImage("/images/UnauthorizedUserImage.png");
+        const setUserProfleImage = async () => {
+            let websiteSession = await verifySession();
+            isAuthRef.current = !(!session && !websiteSession.userId);
+            if(!isAuthRef.current) SetUserImage("/images/UnauthorizedUserImage.png");
             else SetUserImage("/images/Search.png");
-        });
-    }, []);
+        }
+
+        setUserProfleImage();
+    }, [session]);
 
     const Init = () => {
         if(params.productsSection == "Рекомендации") productsBase = Recommendations;
@@ -71,17 +78,16 @@ export function Homelayout({ params }: {
                 </Link>
 
                 <div className={styles.userAvatarDiv} onClick={async () => {
-                    const session = await verifySession();
-                    if(!session.userId) SetModalActive(true);
+                    if(!isAuthRef.current) SetModalActive(true);
                     else push('/profile');
                 }}>
                     <img className={styles.userAvatar} src={userImage} />
                 </div>
 
-                <div className={styles.search} >
+                <div className={styles.search}>
                     <img className={styles.searchIcon} src="/images/Search.png" />
 
-                    <div className={styles.searchField} >
+                    <div className={styles.searchField}>
                         <p>...</p>
                     </div>
                 </div>

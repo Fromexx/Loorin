@@ -3,8 +3,7 @@
 import { SignupFormSchema, SigninFormSchema, SignupFormState, SinginFormState } from "../api/lib/definitions";
 import { redirect } from "next/navigation";
 import { createSession } from "@/api/lib/session";
-import { GetUserByEmail, AddUser } from "@/api/data/UsersDataBaseActions";
-import { AuthTypeController, AuthType } from "@/utils/data/AuthType";
+import { GetUserByEmail, AddUser } from "@/api/data/DataBaseActions";
 
 export async function Signup(state: SignupFormState, formData: FormData) {
     const validatedFields = SignupFormSchema.safeParse({
@@ -32,8 +31,6 @@ export async function Signup(state: SignupFormState, formData: FormData) {
         }
     }
 
-    AuthTypeController.SetAuthType(AuthType.User);
-
     await createSession(user.id);
     redirect('/profile');
 }
@@ -55,8 +52,6 @@ export async function Signin(state: SinginFormState, formData: FormData) {
     if(user == null || !await bcrypt.compare(password, user.hashedPassword)) {
         return { incorrectDataError : "Неправильная почта или пароль." }
     }
-
-    AuthTypeController.SetAuthType(AuthType.User);
 
     await createSession(user.id);
     redirect('/profile');
