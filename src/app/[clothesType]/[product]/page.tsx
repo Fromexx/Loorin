@@ -119,7 +119,7 @@ export default function ProductPage() {
     )
 }
 
-export function GetProductData(pagePathName: string) {
+function GetProductData(pagePathName: string) {
     let pagesNames = pagePathName.split("/");
     pagesNames.shift();
 
