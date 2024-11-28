@@ -5,7 +5,6 @@ import { getToken } from "next-auth/jwt";
 
 export default async function middleware(request: NextRequest) {
     const profileRoute = ["/profile"];
-    const gatewayRoute = ["/gateway"];
     const currentPath = request.nextUrl.pathname;
 
     if(profileRoute.includes(currentPath)) {

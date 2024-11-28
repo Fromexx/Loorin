@@ -5,8 +5,6 @@ import { cookies } from "next/headers";
 
 const AUTH_PARAMS = "authParams";
 
-const GetAuthParams = () => AUTH_PARAMS;
-
 const cookie = {
     name: "authParams",
     options: { 
@@ -30,8 +28,8 @@ export async function createAuthParams() {
     });
 }
 
-export const isCookieSet = async () => {
-    return await verifyAuthParams() == GetAuthParams();
+export const IsCookieSet = async () => {
+    return await verifyAuthParams() == AUTH_PARAMS;
 }
 
 export async function deleteAuthParams() {

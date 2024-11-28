@@ -1,15 +1,18 @@
 'use client'
 
 import { Signin } from "@/services/ProviderAuthActions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import NotFound from "../not-found";
 import Loading from "../loading";
-import { isCookieSet } from "@/api/lib/authParams";
+import { IsCookieSet } from "@/api/lib/authParams";
 
 export default function Gateway() {
+    const [isCookieSet, setIsCookieSet] = useState(false);
+
     useEffect(() => {
         const Actions = async () => {
-            if(isCookieSet()) {
+            if(await IsCookieSet()) {
+                setIsCookieSet(true);
                 await Signin();
             }
         }
@@ -19,7 +22,7 @@ export default function Gateway() {
 
     
 
-    if(isCookieSet())
+    if(isCookieSet)
         return <Loading/>
     else
         return <NotFound/>
