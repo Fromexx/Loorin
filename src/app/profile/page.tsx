@@ -21,12 +21,40 @@ export default function Profile() {
     if (!user) return <Loading/>;
 
     return (
-        <div>
-            <p>{user.name}</p>
-            <button onClick={() => {
-                signOut();
-                Logout();
-            }} >Logout</button>
-        </div>
+        <main>
+            <div className={styles.profile}>
+                <div className={styles.mainInfoContainer}>
+                    <img className={styles.avatar} src="images/AuthorizedUserImage.jpg"/>
+
+                    <div className={styles.mainInfo}>
+                        <p className={styles.name}>{user.name}</p>
+
+                        <div className={styles.emailContainer}>
+                            <p className={styles.email}>{user.email}</p>
+                            <button className={styles.emailConfirmButton}>Подтвердить</button>
+                        </div>
+                        
+                        <hr className={styles.horizontalLine}></hr>
+
+                        <div className={styles.deliveryAddress}>
+                            <p className={styles.addressHeader}>Адрес доставки:</p>
+
+                            <div className={styles.addressContainer}>
+                                <div className={styles.addressField}>
+                                    <p className={styles.address}>...</p>
+                                </div>
+
+                                <button className={styles.saveAddress}>✅</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button className={styles.logout} onClick={() => {
+                        signOut();
+                        Logout();
+                    }} ><img className={styles.logoutImage} src="/images/Logout.png"/></button>
+                </div>
+            </div>
+        </main>
     )
 }

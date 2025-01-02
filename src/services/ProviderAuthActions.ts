@@ -13,13 +13,11 @@ export async function Signin() {
     const { name, email } = session.user;
 
     try {
-        console.log("AddUser");
+        console.log("Email: " + email);
         await AddUser(name, email);
     }
     catch(error) {
-        console.log(error);
         if(error.name == "PrismaClientKnownRequestError") {
-            console.log("Concrete error");
             await GetUserByEmail(email);
         }
     }

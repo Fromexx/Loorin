@@ -1,0 +1,121 @@
+.profile {
+    display: flex;
+    margin-left: 20%;
+    margin-top: 2%;
+    flex-direction: column;
+}
+
+.mainInfoContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.avatar {
+    width: 115px;
+    height: 115px;
+}
+
+.mainInfo {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 1%;
+}
+
+.name {
+    font-size: 1.5em;
+    margin: 2% 0 2% 0;
+}
+
+.emailContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.email {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.emailConfirmButton {
+    margin-left: 2%;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 1.1em;
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+.horizontalLine {
+    display: flex;
+    width: 200%;
+    border-top: 2px solid black;
+    margin: 3% 0 0 0;
+}
+
+.deliveryAddress {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+}
+
+.addressHeader {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.addressContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.5%;
+}
+
+.addressField {
+    display: flex;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 60%;
+}
+
+.address {
+    font-size: 1.5em;
+    margin: 0 0 0 2%;
+    align-self: center;
+}
+
+.saveAddress {
+    font-size: 2em;
+    margin-left: 1%;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+
+    &:active {
+        transform: scale(0.97);
+    }
+}
+
+.logout {
+    display: flex;
+    font-size: 1.5em;
+    width: fit-content;
+    background-color: white;
+    border: none;
+    color: red;
+    padding: 0;
+    height: fit-content;
+    margin-left: 30%;
+    margin-top: 0.5%;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.65;
+    }
+}
+
+.logoutImage {
+    width: 60%;
+}

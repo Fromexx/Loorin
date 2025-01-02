@@ -1,8 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import styles from "./dialog.module.scss";
 import { Signin } from "@/services/UserAuthActions";
 import { useActionState } from "react";
 import { signIn } from "next-auth/react";
 import { CreateAuthParams } from "@/utils/helpers/CreateAuthParamsHelper";
+import { deleteAuthParams } from "@/api/lib/authParams";
 
 type Props = {
     onClose: () => void,
@@ -10,7 +13,7 @@ type Props = {
 
 export function LoginModal({ onClose }: Props) {
     const [state, action] = useActionState(Signin, undefined);
-    
+
     return (
         <div className={styles.modal} >
             <h1 className={styles.loginTitle} >Вход</h1>
@@ -40,19 +43,30 @@ export function LoginModal({ onClose }: Props) {
                     <p className={styles.continueWith} >Или продолжить через</p>
 
                     <div className={styles.societyContainer} >
-                        <button onClick={async () => {
-                            try {
-                                await CreateAuthParams()
-                                await signIn("github", { callbackUrl: "/gateway" });
+                        <img src="/images/SocietyIcons/Google.png" className={styles.googleIcon} onClick={async () => {
+                            await CreateAuthParams();
+                            const response = await signIn("github", { callbackUrl: "/gateway" });
+                            
+                            if (response?.error != null) {
+                                await deleteAuthParams();
                             }
-                            catch (error) {
-                                console.log(error);
+                        }}/>
+                        <img src="/images/SocietyIcons/Yandex.png" className={styles.yandexIcon} onClick={async () => {
+                            await CreateAuthParams();
+                            const response = await signIn("yandex", { callbackUrl: "/gateway" });
+                            
+                            if (response?.error != null) {
+                                await deleteAuthParams();
                             }
-                        }}>
-                            <img src="/images/SocietyIcons/Google.png" className={styles.googleIcon}/>
-                        </button>
-                        <img src="/images/SocietyIcons/Yandex.png" className={styles.yandexIcon} />
-                        <img src="/images/SocietyIcons/Vk.png" className={styles.vkIcon} />
+                        }}/>
+                        <img src="/images/SocietyIcons/Vk.png" className={styles.vkIcon} onClick={async () => {
+                            await CreateAuthParams();
+                            const response = await signIn("vk", { callbackUrl: "/gateway" });
+                            
+                            if (response?.error != null) { 
+                                await deleteAuthParams();
+                            }
+                        }}/>
                     </div>
                 </div>
             </div>
