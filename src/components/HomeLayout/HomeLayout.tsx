@@ -53,10 +53,10 @@ export function Homelayout({ params }: {
         const element = document.getElementById(BURGER_MENU_ID);
 
         if(burgerMenuActive) {
-            element?.setAttribute('style', 'right: -20%');
+            element?.setAttribute('style', 'right: -250px');
         }
         else {
-            element?.setAttribute('style', 'right: 0;');
+            element?.setAttribute('style', 'right: 0px;');
         }
 
         setBurgerMenuActive(!burgerMenuActive);

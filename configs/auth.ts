@@ -15,8 +15,31 @@ export const authConfig: AuthOptions = {
         }),
         VkProvider({
             clientId: process.env.VK_ID,
-            clientSecret: process.env.VK_SECRET
+            clientSecret: process.env.VK_SECRET,
+            // authorization: {
+            //     params: { 
+            //         scope: "email"
+            //     }
+            // }
         }),
     ],
     secret: process.env.NEXTAUTH_SECRET,
 }
+
+/*
+@media screen and (min-width: 480px) {
+    
+}
+
+@media screen and (min-width: 600) {
+    
+}
+
+@media screen and (min-width: 768) {
+    
+}
+
+@media screen and (min-width: 1024) {
+    
+}
+*/
