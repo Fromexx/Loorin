@@ -1,3 +1,6 @@
+.main {
+}
+
 .header {
     display: flex;
     justify-content: center;
@@ -22,10 +25,31 @@
     width: 100%;
 }
 
+.hiddenSearchField {
+    position: absolute;
+    display: none;
+    justify-self: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    top: 61.5px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 2;
+    width: 250px;
+    height: 35px;
+    box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, .3);
+}
+
+.searchText {
+    margin: 0 0 0 3px;
+    align-content: center;
+}
+
 .cartDiv {
     display: flex;
     align-items: center;
-    width: 60px;
+    width: 57px;
     margin-right: 5px;
 }
 
@@ -33,7 +57,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 63px;
+    width: 60px;
     border-left: 3px solid;
     border-right: 3px solid;
     margin-right: 6px;
@@ -63,9 +87,15 @@
 }
 
 .searchIcon {
-    width: 60px;
+    padding: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0);
+}
+
+.searchImage {
+    width: 53px;
     height: auto;
-    margin-left: 0.5%;
+    margin-left: 3%;
 }
 
 .searchField {
@@ -81,33 +111,33 @@
 
 .burgerMenuButtonInactive {
     display: inline-block;
-    position: sticky;
+    position: absolute;
     right: 0;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin-right: 10px;
+    margin-top: 1.5vh;
     cursor: pointer;
     z-index: 1;
 }
 
 .burgerMenuButtonActive {
     cursor: pointer;
-    display: inline-block;
     position: fixed;
-    right: 20px;
-    margin-top: 18px;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 1.5vh;
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
 
     .bar {
         &:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+            transform: translateY(9px) rotate(45deg);
             background-color: white;
         }
         &:nth-child(2) {
             opacity: 0;
         }
         &:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+            transform: translateY(-9px) rotate(-45deg);
             background-color: white;
         }
     }
@@ -116,7 +146,7 @@
 .bar {
     display: block;
     width: 25px;
-    height: 3px;
+    height: 4px;
     margin: 5px auto;
     transition: 0.3s;
     background-color: black;
@@ -144,43 +174,151 @@
 .burgerMenuItem {
     color: white;
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 2em;
     transition: 0.3s;
     display: block;
     padding: 8px;
 }
 
 .ProductsSection {
-    font-size: 1.5em;
-    margin-left: 2%;
-    margin-top: 2%;
+    font-size: 1.7em;
+    margin-left: 30px;
+    margin-top: 30px;
     font-weight: 300;
     margin-bottom: 0;
 }
 
-@media screen and (min-width: 480px) and (max-width: 768px) {
+@media screen and (max-width: 425px) {
+    .title {
+        font-size: 3em;
+    }
+
+    .cartDiv {
+        width: 35px;
+    }
+
+    .userAvatarDiv {
+        width: 41px;
+        margin-right: 2px;
+    }
+
+    .userAvatar {
+        width: 85%;
+    }
+
+    .search {
+        border: none;
+        width: 35px;
+    }
+
+    .searchField {
+        display: none;
+    }
+
+    .searchIcon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .searchImage {
+        width: 35px;
+    }
+
+    .burgerMenuButtonInactive {
+        margin-top: 1.9vh;
+        margin-right: 7px;
+    }
+
+    .burgerMenuButtonActive {
+        margin-top: 1.9vh;
+        margin-right: 7px;
+
+        .bar {
+            &:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            &:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+    }
+
+    .bar {
+        width: 22px;
+        height: 3px;
+    }
+
+    .burgerMenu {
+        width: 150px;
+        right: -150px;
+    }
+
+    .burgerMenuItem {
+        font-size: 1.2em;
+    }
+
+    .ProductsSection {
+        font-size: 1em;
+        margin-left: 16px;
+        margin-top: 16px;
+    }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
     .title {
         font-size: 4em;
     }
 
     .cartDiv {
-        width: 45px;
+        width: 42px;
     }
 
     .userAvatarDiv {
-        width: 45px;
+        width: 42px;
         margin-right: 4px;
     }
     
     .search {
-        width: 230px;
+        width: 200px;
         margin-top: 4px;
         margin-bottom: 4px;
     }
 
     .searchIcon {
-        width: 39px;
+        pointer-events: none;
+    }
+
+    .searchImage {
+        width: 35px;
         margin-left: 2px;
+    }
+
+    .burgerMenuButtonInactive {
+        margin-top: 2.3vh;
+    }
+
+    .burgerMenuButtonActive {
+        margin-top: 2.3vh;
+
+        .bar {
+            &:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            &:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+    }
+
+    .bar {
+        width: 21px;
+        height: 3px;
+    }
+
+    .ProductsSection {
+        font-size: 1.3em;
     }
 }
 
@@ -194,7 +332,7 @@
     }
 
     .userAvatarDiv {
-        width: 52px;
+        width: 47px;
         margin-right: 4px;
     }
     
@@ -205,7 +343,59 @@
     }
 
     .searchIcon {
+        pointer-events: none;
+    }
+
+    .searchImage {
         width: 40px;
         margin-left: 2px;
+    }
+
+    .burgerMenuButtonInactive {
+        margin-top: 2.3vh;
+    }
+
+    .burgerMenuButtonActive {
+        margin-top: 2.3vh;
+
+        .bar {
+            &:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            &:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+    }
+
+    .bar {
+        width: 21px;
+        height: 3px;
+    }
+
+    .ProductsSection {
+        font-size: 1.4em;
+    }
+}
+
+@media screen and (min-width: 1601px) {
+    .searchIcon {
+        pointer-events: none;
+    }
+
+    .burgerMenuButtonInactive {
+        right: 10px;
+        margin-top: 2.2vh;
+    }
+
+    .burgerMenuButtonActive {
+        right: 10px;
+        margin-top: 2.2vh;
+    }
+
+    .burgerMenu {
+        width: 325px;
+        right: -325px;
     }
 }

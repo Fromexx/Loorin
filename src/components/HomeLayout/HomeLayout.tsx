@@ -2,7 +2,7 @@
 
 import Products from "@/components/Products/Products";
 import styles from "./homeLayout.module.scss";
-import React, { useEffect, useRef, useState } from "react";
+import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ClothesTypesEnum } from "@/utils/helpers/ClothesTypesEnum";
 import { Recommendations } from "@/utils/data/RecommendationsBase";
@@ -16,7 +16,9 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 let productsBase: ProductsBaseType;
+
 const BURGER_MENU_ID = "burgerMenu";
+const SEARCH_ICON_ID = "searchIcon";
 
 export function Homelayout({ params }: {
     params: { productsSection: string };
@@ -27,6 +29,7 @@ export function Homelayout({ params }: {
     const { push } = useRouter();
     const { data: session } = useSession();
     const isAuthRef = useRef(false);
+    const ref = useRef(null);
 
     useEffect(() => {
         const setUserProfleImage = async () => {
@@ -38,6 +41,19 @@ export function Homelayout({ params }: {
 
         setUserProfleImage();
     }, [session]);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (ref.current && !ref.current.contains(event.target)) {
+                const element1 = document.getElementById(SEARCH_ICON_ID);
+                element1?.setAttribute('style', 'display: none');
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        
+        return () => { document.removeEventListener('mousedown', handleClickOutside) };
+    }, [ref]);
 
     const Init = () => {
         if(params.productsSection == "Рекомендации") productsBase = Recommendations;
@@ -53,19 +69,32 @@ export function Homelayout({ params }: {
         const element = document.getElementById(BURGER_MENU_ID);
 
         if(burgerMenuActive) {
-            element?.setAttribute('style', 'right: -250px');
+            if(window.screen.width > 1600) {
+                element?.setAttribute('style', 'right: -325px');
+            }
+            else if(window.screen.width <= 1600) {
+                if(window.screen.width <= 320) 
+                    element?.setAttribute('style', 'right: -150');
+                else element?.setAttribute('style', 'right: -250px');
+            }            
         }
         else {
             element?.setAttribute('style', 'right: 0px;');
         }
 
+        console.log(!burgerMenuActive);
         setBurgerMenuActive(!burgerMenuActive);
     }
+
+    const searchIconClicked = () => {
+        const element = document.getElementById(SEARCH_ICON_ID);
+        element?.setAttribute('style', 'display: flex');
+    }    
 
     useComponentWillMount(Init);
 
     return (
-        <main>
+        <main className={styles.main}>
             <Modal onClose={onClose} isActive={isModalActive} />
 
             <div className={styles.header}>
@@ -73,6 +102,10 @@ export function Homelayout({ params }: {
             </div>
             
             <div className={styles.mainPanel} >
+                <div className={styles.hiddenSearchField} id={SEARCH_ICON_ID} ref={ref}>
+                    <p className={styles.searchText}>...</p>
+                </div>
+
                 <Link href={"/cart"} className={styles.cartDiv} >
                     <img className={styles.cart} src="/images/Cart.png" />
                 </Link>
@@ -85,7 +118,9 @@ export function Homelayout({ params }: {
                 </div>
 
                 <div className={styles.search}>
-                    <img className={styles.searchIcon} src="/images/Search.png" />
+                    <button className={styles.searchIcon} onClick={searchIconClicked}>
+                        <img className={styles.searchImage} src="/images/Search.png" />
+                    </button>
 
                     <div className={styles.searchField}>
                         <p>...</p>
@@ -98,7 +133,7 @@ export function Homelayout({ params }: {
                     <span className={styles.bar} />
                 </div>
                 
-                <nav className={styles.burgerMenu} id={`${BURGER_MENU_ID}`} >
+                <nav className={styles.burgerMenu} id={BURGER_MENU_ID}>
                     {React.Children.toArray(Object.entries(ClothesTypesEnum).map(([key, value]) => (
                         <Link href={`/${key}`} className={styles.burgerMenuItem} >{value}</Link>
                     )))}
