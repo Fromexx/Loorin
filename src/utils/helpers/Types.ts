@@ -40,3 +40,5 @@ export type ConcreteUserType = {
     name: string;
     email: string;
 }
+
+export type EventListeners = Record<string, Array<Function>>;

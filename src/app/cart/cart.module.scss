@@ -7,14 +7,13 @@
 }
 
 .backButtonContainer {
-    width: 3%;
-    margin-top: 0.3%;
+    width: 60px;
+    margin: 5px 10px 0 10px;
 }
 
 .backButton {
     width: 100%;
     height: auto;
-    margin-left: 20%;
     cursor: pointer;
 }
 
@@ -22,25 +21,28 @@
     display: flex;
     border-left: 3px solid black;
     align-items: center;
-    margin-left: 1.2%;
-    width: 50%;
 }
 
 .pageName {
     font-size: 2em;
-    margin: 0 0 0 1.2%;
+    margin: 0;
+    padding-left: 5px;
+}
+
+.orders {
+    width: 1143px;
+    margin: auto
 }
 
 .productOrder {
     display: flex;
     flex-direction: column;
-    width: 60%;
-    margin: 2% auto 0 auto;
+    margin: 40px auto 0 auto;
 }
 
 .deleteProductButton {
     display: flex;
-    width: 2%;
+    width: 25px;
     border: 2px solid black;
     border-bottom: 0;
 
@@ -57,49 +59,50 @@
 .productCard {
     display: flex;
     flex-direction: row;
-    width: 100%;
     border: 2px solid black;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
 }
 
 .productImageContainer {
     display: flex;
     justify-content: center;
-    width: 40%;
-    border-right: 2px solid black;
+    width: 400px;
+    border-right: 1px solid black;
+    box-sizing: border-box;
 }
 
 .productImage {
-    width: 70%;
+    width: 100%;
     height: auto;
-    padding: 10%;
+    padding: 40px;
 }
 
 .productInfoTable {
     border-collapse: collapse;
-    width: 25%;
+    width: 280px;
 }
 
 .dataName {
-    font-size: 1.1vw;
+    font-size: 1.3em;
     font-weight: bold;
-    padding: 3%;
+    padding: 10px;
 }
 
 .dataValue {
-    font-size: 1.1vw;
-    padding: 1%;
+    font-size: 1.3em;
+    padding: 10px;
     height: 1px;
+    border: 0;
 }
 
 .designDescription {
-    width: 35%;
-    font-size: 1.2vw;
-    padding: 1%;
-}
-
-.wrapper {
-    width: 60%;
-    margin: auto;
+    width: 440px;
+    font-size: 1.4em;
+    padding: 10px;
 }
 
 .buyButton {
@@ -108,11 +111,210 @@
     border: 2px solid black;
     border-top: 0;
     text-align: center;
-    font-size: 2vw;
+    font-size: 2.3em;
     cursor: pointer;
     background-color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
 
     &:active {
         transform: scale(0.98);
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .upperPanel {
+        border-bottom: 1px solid black;
+    }
+    
+    .backButtonContainer {
+        width: 25px;
+        margin: 2px 4px 0 4px;
+    }
+    
+    .pageNameContainer {
+        border-left: 1px solid black;
+    }
+
+    .pageName {
+        font-size: 1em;
+        padding-left: 3px;
+    }
+
+    .orders {
+        width: 90vw;
+    }
+
+    .deleteProductButton {
+        width: 15px;
+        border: 1px solid black;
+        border-bottom: 0;
+    }
+
+    .productCard {
+        border: 1px solid black;
+    }
+
+    .productImageContainer {
+        width: 40vw;
+        border-bottom: 1px solid black;
+    }
+
+    .productImage {
+        padding: 5px;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .productInfoTable {
+        width: 40vw;
+    }
+
+    .dataName {
+        font-size: 0.6em;
+        padding: 2px;
+    }
+
+    .dataValue {
+        font-size: 0.6em;
+        padding: 2px;
+    }
+
+    .designDescription {
+        font-size: 0.6em;
+        padding: 4px;
+    }
+
+    .buyButton {
+        border: 1px solid black;
+        border-top: 0;
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+    .backButtonContainer {
+        width: 40px;
+        margin: 5px 5px 0 5px;
+    }
+
+    .pageName {
+        font-size: 1.5em;
+    }
+
+    .orders {
+        width: 90vw;
+    }
+
+    .deleteProductButton {
+        width: 20px;
+        border: 1px solid black;
+        border-bottom: 0;
+    }
+
+    .productCard {
+        border: 1px solid black;
+    }
+
+    .productImageContainer {
+        width: 35vw;
+        border-bottom: 1px solid black;
+    }
+
+    .productImage {
+        padding: 5px;
+        width: 85%;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .productInfoTable {
+        width: 35vw;
+    }
+
+    .dataName {
+        font-size: 0.9em;
+        padding: 2px;
+    }
+
+    .dataValue {
+        font-size: 0.9em;
+        padding: 2px;
+    }
+
+    .designDescription {
+        font-size: 1em;
+        padding: 4px;
+    }
+
+    .buyButton {
+        border: 1px solid black;
+        border-top: 0;
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .backButtonContainer {
+        width: 40px;
+        margin: 5px 5px 0 5px;
+    }
+
+    .pageName {
+        font-size: 1.5em;
+    }
+
+    .orders {
+        width: 90vw;
+    }
+
+    .deleteProductButton {
+        width: 20px;
+        border: 1px solid black;
+        border-bottom: 0;
+    }
+
+    .productCard {
+        border: 1px solid black;
+    }
+
+    .productImageContainer {
+        width: 25vw;
+    }
+
+    .productImage {
+        padding: 10px;
+        width: 90%;
+    }
+
+    .productInfoTable {
+        width: 28vw;
+    }
+
+    .dataName {
+        font-size: 1em;
+        padding: 2px;
+    }
+
+    .dataValue {
+        font-size: 1em;
+        padding: 2px;
+    }
+
+    .designDescription {
+        font-size: 1em;
+        padding: 4px;
+    }
+
+    .buyButton {
+        border: 1px solid black;
+        border-top: 0;
+        font-size: 1.2em;
     }
 }

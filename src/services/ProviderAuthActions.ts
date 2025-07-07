@@ -13,7 +13,6 @@ export async function Signin() {
     const { name, email } = session.user;
 
     try {
-        console.log("Email: " + email);
         await AddUser(name, email);
     }
     catch(error) {

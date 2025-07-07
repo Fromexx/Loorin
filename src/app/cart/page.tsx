@@ -11,7 +11,6 @@ const BUY_BUTTON_ID = "buyButton";
 export default function CartPage() {
     const [elementDeleting, SetElementDeleting] = useState(false);
     const pathname = usePathname();
-
     const previousPath = pathname.slice(0, pathname.lastIndexOf('/'));
 
     useEffect(() => {
@@ -31,6 +30,7 @@ export default function CartPage() {
                 <div className={styles.pageNameContainer} ><p className={styles.pageName} >Корзина</p></div>
             </div>
 
+            <div className={styles.orders}>
                 {React.Children.toArray(OrdersBase.map(order => (
                     <div className={styles.productOrder} >
                         <div className={styles.deleteProductButton} onClick={() => {
@@ -39,35 +39,38 @@ export default function CartPage() {
                         }} ><img className={styles.deleteProductImage} src="/images/Cross.png" /></div>
 
                         <div className={styles.productCard} >
-                            <div className={styles.productImageContainer} ><img className={styles.productImage} src={order.image} /></div>
-
-                            <table className={styles.productInfoTable} >
-                                <tbody>
-                                    <tr style={{'borderTop': 0, 'borderLeft': 0}} >
-                                        <td className={styles.dataName} >Цена</td>
-                                        <td className={styles.dataValue} >{order.price} р.</td>
-                                    </tr>
-                                    <tr style={{'borderLeft': 0}} >
-                                        <td className={styles.dataName} >Состав</td>
-                                        <td className={styles.dataValue} >{order.material}</td>
-                                    </tr>
-                                    <tr style={{'borderLeft': 0}} >
-                                        <td className={styles.dataName} >Размер</td>
-                                        <td className={styles.dataValue} >{order.size}</td>
-                                    </tr>
-                                    <tr style={{'borderLeft': 0, 'borderBottom': 0}} >
-                                        <td className={styles.dataName} >Цвет</td>
-                                        <td className={styles.dataValue} >{order.color}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div className={styles.wrapper}>
+                                <div className={styles.productImageContainer} ><img className={styles.productImage} src={order.image} /></div>
+                            
+                                <table className={styles.productInfoTable} >
+                                    <tbody>
+                                        <tr style={{'borderTop': 0, 'borderLeft': 0}} >
+                                            <td className={styles.dataName} >Цена</td>
+                                            <td className={styles.dataValue} >{order.price} р.</td>
+                                        </tr>
+                                        <tr style={{'borderLeft': 0}} >
+                                            <td className={styles.dataName} >Состав</td>
+                                            <td className={styles.dataValue} >{order.material}</td>
+                                        </tr>
+                                        <tr style={{'borderLeft': 0}} >
+                                            <td className={styles.dataName} >Размер</td>
+                                            <td className={styles.dataValue} >{order.size}</td>
+                                        </tr>
+                                        <tr style={{'borderLeft': 0, 'borderBottom': 0}} >
+                                            <td className={styles.dataName} >Цвет</td>
+                                            <td className={styles.dataValue} >{order.color}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <div className={styles.designDescription} >{order.description}</div>
                         </div>
                     </div>
                 )))}
 
-            <div className={styles.wrapper} id={BUY_BUTTON_ID} ><button className={styles.buyButton} >Заказать</button></div>
+                <button id={BUY_BUTTON_ID} className={styles.buyButton} >Заказать</button>
+            </div>
         </main>
     )
 }

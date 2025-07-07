@@ -25,27 +25,6 @@
     width: 100%;
 }
 
-.hiddenSearchField {
-    position: absolute;
-    display: none;
-    justify-self: center;
-    border: 2px solid black;
-    border-radius: 10px;
-    top: 61.5px;
-    left: 0;
-    right: 0;
-    background-color: white;
-    z-index: 2;
-    width: 250px;
-    height: 35px;
-    box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, .3);
-}
-
-.searchText {
-    margin: 0 0 0 3px;
-    align-content: center;
-}
-
 .cartDiv {
     display: flex;
     align-items: center;
@@ -65,17 +44,6 @@
     cursor: pointer;
 }
 
-.search {
-    display: flex;
-    width: 350px;
-    border-radius: 50px;
-    border-width: 3px;
-    border-style: solid;
-    border-color: black;
-    margin-top: 6px;
-    margin-bottom: 6px;
-}
-
 .cart {
     width: 100%;
     height: auto;
@@ -84,29 +52,6 @@
 .userAvatar {
     width: 100%;
     height: auto;
-}
-
-.searchIcon {
-    padding: 0;
-    border: 0;
-    background: rgba(0, 0, 0, 0);
-}
-
-.searchImage {
-    width: 53px;
-    height: auto;
-    margin-left: 3%;
-}
-
-.searchField {
-    align-content: center;
-    border-left: 3px solid;
-    width: 100%;
-
-    p {
-        margin: 0 0 0 1%;
-        font-size: 170%;
-    }
 }
 
 .burgerMenuButtonInactive {
@@ -206,24 +151,6 @@
         width: 85%;
     }
 
-    .search {
-        border: none;
-        width: 35px;
-    }
-
-    .searchField {
-        display: none;
-    }
-
-    .searchIcon {
-        width: 35px;
-        height: 35px;
-    }
-
-    .searchImage {
-        width: 35px;
-    }
-
     .burgerMenuButtonInactive {
         margin-top: 1.9vh;
         margin-right: 7px;
@@ -279,27 +206,12 @@
         margin-right: 4px;
     }
     
-    .search {
-        width: 200px;
-        margin-top: 4px;
-        margin-bottom: 4px;
-    }
-
-    .searchIcon {
-        pointer-events: none;
-    }
-
-    .searchImage {
-        width: 35px;
-        margin-left: 2px;
-    }
-
     .burgerMenuButtonInactive {
-        margin-top: 2.3vh;
+        margin-top: 12px;
     }
 
     .burgerMenuButtonActive {
-        margin-top: 2.3vh;
+        margin-top: 12px;
 
         .bar {
             &:nth-child(1) {
@@ -335,21 +247,6 @@
         width: 47px;
         margin-right: 4px;
     }
-    
-    .search {
-        width: 240px;
-        margin-top: 4px;
-        margin-bottom: 4px;
-    }
-
-    .searchIcon {
-        pointer-events: none;
-    }
-
-    .searchImage {
-        width: 40px;
-        margin-left: 2px;
-    }
 
     .burgerMenuButtonInactive {
         margin-top: 2.3vh;
@@ -380,10 +277,6 @@
 }
 
 @media screen and (min-width: 1601px) {
-    .searchIcon {
-        pointer-events: none;
-    }
-
     .burgerMenuButtonInactive {
         right: 10px;
         margin-top: 2.2vh;

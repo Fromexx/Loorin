@@ -1,7 +1,38 @@
+.upperPanel {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    border-bottom: 3px solid black;
+}
+
+.backButtonContainer {
+    width: 60px;
+    margin: 5px 10px 0 10px;
+}
+
+.backButton {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.pageNameContainer {
+    display: flex;
+    border-left: 3px solid black;
+    align-items: center;
+}
+
+.pageName {
+    font-size: 2em;
+    margin: 0;
+    padding-left: 5px;
+}
+
 .profile {
     display: flex;
-    margin-left: 20%;
-    margin-top: 2%;
+    margin-top: 50px;
+    align-items: center;
     flex-direction: column;
 }
 
@@ -11,19 +42,19 @@
 }
 
 .avatar {
-    width: 115px;
-    height: 115px;
+    width: 170px;
+    height: 170px;
 }
 
 .mainInfo {
     display: flex;
     flex-direction: column;
-    margin: 0 0 0 1%;
+    margin: 0 0 0 15px;
 }
 
 .name {
     font-size: 1.5em;
-    margin: 2% 0 2% 0;
+    margin: 5px 0 5px 0;
 }
 
 .emailContainer {
@@ -37,12 +68,12 @@
 }
 
 .emailConfirmButton {
-    margin-left: 2%;
+    margin-left: 10px;
     cursor: pointer;
     border: 2px solid black;
     border-radius: 8px;
     background-color: white;
-    font-size: 1.1em;
+    font-size: 1.5em;
 
     &:active {
         transform: scale(0.98);
@@ -51,15 +82,15 @@
 
 .horizontalLine {
     display: flex;
-    width: 200%;
+    width: 600px;
     border-top: 2px solid black;
-    margin: 3% 0 0 0;
+    margin: 15px 0 0 0;
 }
 
 .deliveryAddress {
     display: flex;
     flex-direction: column;
-    margin-top: 2%;
+    margin-top: 10px;
 }
 
 .addressHeader {
@@ -70,25 +101,26 @@
 .addressContainer {
     display: flex;
     flex-direction: row;
-    margin-top: 1.5%;
+    margin-top: 10px;
 }
 
 .addressField {
     display: flex;
     border: 2px solid black;
     border-radius: 10px;
-    width: 60%;
+    width: 400px;
 }
 
 .address {
     font-size: 1.5em;
-    margin: 0 0 0 2%;
+    padding-left: 5px;
+    margin: 0;
     align-self: center;
 }
 
 .saveAddress {
+    display: flex;
     font-size: 2em;
-    margin-left: 1%;
     border: none;
     background-color: white;
     cursor: pointer;
@@ -100,16 +132,15 @@
 
 .logout {
     display: flex;
-    font-size: 1.5em;
     width: fit-content;
     background-color: white;
     border: none;
     color: red;
     padding: 0;
     height: fit-content;
-    margin-left: 30%;
-    margin-top: 0.5%;
     cursor: pointer;
+    margin-top: 20px;
+    margin-left: -30px;
 
     &:hover {
         opacity: 0.65;
@@ -117,5 +148,210 @@
 }
 
 .logoutImage {
-    width: 60%;
+    width: 30px;
+}
+
+@media screen and (max-width: 425px) {
+    .upperPanel {
+        border-bottom: 1px solid black;
+    }
+    
+    .backButtonContainer {
+        width: 25px;
+        margin: 2px 4px 0 4px;
+    }
+    
+    .pageNameContainer {
+        border-left: 1px solid black;
+    }
+
+    .pageName {
+        font-size: 1em;
+        padding-left: 3px;
+    }
+
+    .profile {
+        margin: 0 0 0 -20px;
+        align-items: center;
+    }
+
+    .mainInfoContainer {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .avatar {
+        width: 70px;
+        height: 70px;
+        margin-left: 10px;
+    }
+
+    .name {
+        font-size: 1em;
+        margin: 10px 0 3px 0;
+    }
+
+    .emailContainer {
+        flex-direction: column;
+    }
+
+    .email {
+        font-size: 1em;
+    }
+
+    .emailConfirmButton {
+        font-size: 1em;
+        width: fit-content;
+        margin: 7px 0 0 0;
+    }
+
+    .horizontalLine {
+        width: 90vw;
+    }
+
+    .addressHeader {
+        font-size: 1em;
+    }
+    
+    .addressContainer {
+        flex-direction: column;
+    }
+
+    .addressField {
+        width: 200px;
+    }
+
+    .saveAddress {
+        margin-left: -12px;
+    }
+
+    .logout {
+        margin-top: 40px;
+        margin-left: 10px;
+    }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .backButtonContainer {
+        width: 40px;
+        margin: 5px 5px 0 5px;
+    }
+
+    .pageName {
+        font-size: 1.5em;
+    }
+
+    .profile {
+        margin-left: -20px;
+        align-items: center;
+    }
+
+    .avatar {
+        width: 90px;
+        height: 90px;
+        margin: 0;
+    }
+
+    .mainInfo { 
+        margin: 0 0 0 8px;
+    }
+
+    .name {
+        font-size: 1em;
+        margin: 2px 0 2px 0
+    }
+
+    .email {
+        font-size: 1em;
+    }
+
+    .emailConfirmButton {
+        font-size: 1em;
+        margin-left: 5px;
+    }
+
+    .horizontalLine {
+        width: 335px;
+        margin: 8px 0 0 0;
+    }
+
+    .addressHeader {
+        font-size: 1em;
+    }
+
+    .addressField {
+        width: 290px;
+    }
+
+    .logout {
+        margin-top: -30px;
+        margin-left: -50px;
+    }
+
+    .logoutImage {
+        width: 25px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    .backButtonContainer {
+        width: 40px;
+        margin: 5px 5px 0 5px;
+    }
+
+    .pageName {
+        font-size: 1.5em;
+    }
+
+    .profile {
+        margin-left: -20px;
+        align-items: center;
+    }
+
+    .avatar {
+        width: 110px;
+        height: 110px;
+        margin: 0;
+    }
+
+    .mainInfo { 
+        margin: 0 0 0 8px;
+    }
+
+    .name {
+        font-size: 1.2em;
+        margin: 2px 0 2px 0
+    }
+
+    .email {
+        font-size: 1.2em;
+    }
+
+    .emailConfirmButton {
+        font-size: 1.2em;
+        margin-left: 5px;
+    }
+
+    .horizontalLine {
+        width: 400px;
+        margin: 8px 0 0 0;
+    }
+
+    .addressHeader {
+        font-size: 1.2em;
+    }
+
+    .addressField {
+        width: 290px;
+    }
+
+    .logout {
+        margin-top: -25px;
+        margin-left: -30px;
+    }
+
+    .logoutImage {
+        width: 28px;
+    }
 }

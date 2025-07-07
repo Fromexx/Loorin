@@ -9,16 +9,15 @@ import { Recommendations } from "@/utils/data/RecommendationsBase";
 import { TShirts } from "@/utils/data/TShirtsBase";
 import { Hoodies } from "@/utils/data/HoodiesBase";
 import { useComponentWillMount } from "@/utils/helpers/ComponentWillMount";
-import { ProductsBaseType } from "@/utils/helpers/Types";
+import { ProductDataType, ProductsBaseType } from "@/utils/helpers/Types";
 import { Modal } from "../AccountEnterModal/AccountEnterModal";
 import { verifySession } from "@/api/lib/session";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-
-let productsBase: ProductsBaseType;
+import { SearchField } from "../SearchField/SearchField";
+import { eventEmitter } from "@/services/EventEmitter";
 
 const BURGER_MENU_ID = "burgerMenu";
-const SEARCH_ICON_ID = "searchIcon";
 
 export function Homelayout({ params }: {
     params: { productsSection: string };
@@ -26,10 +25,10 @@ export function Homelayout({ params }: {
     const [burgerMenuActive, setBurgerMenuActive] = useState(false);
     const [isModalActive, SetModalActive] = useState(false);
     const [userImage, SetUserImage] = useState(null);
+    const [productsBase, SetProductsBase] = useState(Recommendations);
     const { push } = useRouter();
     const { data: session } = useSession();
     const isAuthRef = useRef(false);
-    const ref = useRef(null);
 
     useEffect(() => {
         const setUserProfleImage = async () => {
@@ -42,23 +41,11 @@ export function Homelayout({ params }: {
         setUserProfleImage();
     }, [session]);
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (ref.current && !ref.current.contains(event.target)) {
-                const element1 = document.getElementById(SEARCH_ICON_ID);
-                element1?.setAttribute('style', 'display: none');
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside);
-        
-        return () => { document.removeEventListener('mousedown', handleClickOutside) };
-    }, [ref]);
-
     const Init = () => {
-        if(params.productsSection == "Рекомендации") productsBase = Recommendations;
-        else if(params.productsSection == ClothesTypesEnum["T-Shirts"]) productsBase = TShirts;
-        else if(params.productsSection == ClothesTypesEnum.Hoodies) productsBase = Hoodies;
+        if(params.productsSection == ClothesTypesEnum["T-Shirts"]) SetProductsBase(TShirts);
+        else if(params.productsSection == ClothesTypesEnum.Hoodies) SetProductsBase(Hoodies);
+
+        eventEmitter.subscribe("ProductSearching", onProductSearching);
     }
 
     const onClose = () => {
@@ -82,14 +69,10 @@ export function Homelayout({ params }: {
             element?.setAttribute('style', 'right: 0px;');
         }
 
-        console.log(!burgerMenuActive);
         setBurgerMenuActive(!burgerMenuActive);
     }
 
-    const searchIconClicked = () => {
-        const element = document.getElementById(SEARCH_ICON_ID);
-        element?.setAttribute('style', 'display: flex');
-    }    
+    const onProductSearching = (searchResult: Array<ProductDataType>) => SetProductsBase(searchResult);
 
     useComponentWillMount(Init);
 
@@ -101,11 +84,7 @@ export function Homelayout({ params }: {
                 <Link href={"/"} className={styles.titleLink} ><h1 className={styles.title}>Loorin</h1></Link>
             </div>
             
-            <div className={styles.mainPanel} >
-                <div className={styles.hiddenSearchField} id={SEARCH_ICON_ID} ref={ref}>
-                    <p className={styles.searchText}>...</p>
-                </div>
-
+            <div className={styles.mainPanel}>
                 <Link href={"/cart"} className={styles.cartDiv} >
                     <img className={styles.cart} src="/images/Cart.png" />
                 </Link>
@@ -117,15 +96,7 @@ export function Homelayout({ params }: {
                     <img className={styles.userAvatar} src={userImage} />
                 </div>
 
-                <div className={styles.search}>
-                    <button className={styles.searchIcon} onClick={searchIconClicked}>
-                        <img className={styles.searchImage} src="/images/Search.png" />
-                    </button>
-
-                    <div className={styles.searchField}>
-                        <p>...</p>
-                    </div>
-                </div>
+                <SearchField params={{defaultValue: "..."}}/>
 
                 <div className={burgerMenuActive ? styles.burgerMenuButtonActive : styles.burgerMenuButtonInactive} onClick={burgerMenuClicked} >
                     <span className={styles.bar} />

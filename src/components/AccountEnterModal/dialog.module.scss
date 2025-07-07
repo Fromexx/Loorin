@@ -1,21 +1,20 @@
 .modal {
     display: block;
     position: fixed;
-    width: 25%;
-    height: 50%;
+    width: 450px;
+    height: 500px;
     background-color: white;
     border: 3px solid black;
     transform: translate(-50%, 50%);
     left: 50%;
+    z-index: 2;
 }
 
 .closeButton {
     cursor: pointer;
     display: block;
-    margin-left: 93%;
-    margin-top: 2%;
-    width: 25px;
-    height: 25px;
+    margin-left: 415px;
+    margin-top: 10px;
     position: absolute;
 
     .line {
@@ -39,14 +38,15 @@
     text-align: center;
     text-decoration: underline;
     text-underline-offset: 7px;
-    margin-top: 10%;
+    margin-top: 50px;
+    font-size: 2em;
 }
 
 .logInButton {
-    margin: 10% auto 5% auto;
-    width: 28%;
+    margin: 45px auto 0 auto;
+    width: fit-content;
     display: block;
-    font-size: 2vw;
+    font-size: 2.2em;
     background-color: white;
     cursor: pointer;
     border: 3px solid black;
@@ -58,15 +58,15 @@
 }
 
 .orText {
-    font-size: 1.2vw;
-    margin-left: 44%;
+    font-size: 1.2em;
+    margin-left: 200px;
 }
 
 .registerButton {
-    margin: 5% auto 0 auto;
-    width: 81%;
+    margin: 0 auto 0 auto;
+    width: fit-content;
     display: block;
-    font-size: 2vw;
+    font-size: 2.2em;
     background-color: white;
     cursor: pointer;
     border: 3px solid black;
@@ -89,13 +89,14 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    font-size: 2em;
 }
 
 .mainContainer {
     display: flex;
     justify-content: center;
-    margin-top: 15%;
-    flex-wrap: wrap;
+    margin-top: 65px;
+    flex-direction: column;
 }
 
 .loginForm {
@@ -112,8 +113,8 @@
     margin: auto;
     font-size: 1.2em;
     box-sizing: border-box;
-    padding-left: 2%;
-    margin-top: 4%;
+    padding-left: 10px;
+    margin-top: 18px;
 
     &:placeholder{
         color: rgba(0, 0, 0, 0.5);
@@ -122,26 +123,26 @@
 
 .rememberMe {
     display: flex;
-    margin: 5% 0 2% 0;
+    margin: 20px 0 10px 0;
 }
 
 .rememberMeCheckbox {
     display: flex;
-    margin-left: 20%;
-    width: 3%;
+    margin-left: 85px;
+    width: 15px;
 }
 
 .rememberMeText {
     font-size: 1.1em;
-    margin-left: 1%;
+    margin-left: 5px;
     user-select: none;
 }
 
 .loginSubmitButton {
-    margin: 2% auto 0 auto;
-    width: 22%;
+    margin: 10px auto 0 auto;
+    width: fit-content;
     display: block;
-    font-size: 1.5vw;
+    font-size: 1.8em;
     background-color: white;
     cursor: pointer;
     border: 3px solid black;
@@ -154,7 +155,7 @@
 
 .continueWithContainer {
     display: flex;
-    margin-top: 5%;
+    margin-top: 20px;
     flex-direction: column;
     justify-content: center;
 }
@@ -168,28 +169,29 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 20px;
 }
 
 .googleIcon {
-    width: 10%;
+    width: 45px;
     cursor: pointer;
 }
 
 .yandexIcon {
-    width: 10%;
-    margin: 0 5% 0 5%;
+    width: 45px;
+    margin: 0 20px 0 20px;
     cursor: pointer;
 }
 
 .vkIcon {
-    width: 10%;
+    width: 45px;
     cursor: pointer;
 }
 
 .errorText {
-    margin: 2% auto 0 auto;
+    margin: 10px auto 0 auto;
     color: red;
+    font-size: 1em;
 }
 
 // Register Modal
@@ -197,19 +199,20 @@
 .registerModal {
     display: block;
     position: fixed;
-    width: 25%;
-    height: 62%;
+    width: 460px;
+    height: 600px;
     background-color: white;
     border: 3px solid black;
     transform: translate(-50%, 38%);
     left: 50%;
+    z-index: 2;
 }
 
 .registerSubmitButton {
-    margin: 2% auto 0 auto;
-    width: 62%;
+    margin: 10px auto 0 auto;
+    width: fit-content;
     display: block;
-    font-size: 1.5vw;
+    font-size: 1.8em;
     background-color: white;
     cursor: pointer;
     border: 3px solid black;
@@ -217,5 +220,421 @@
 
     &:active {
         transform: scale(0.98);
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .modal {
+        width: 200px;
+        height: 270px;
+        transform: translate(-50%, 35%);
+    }
+
+    .closeButton {
+        margin-left: 170px;
+
+        .line {
+            &:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            &:nth-child(2) {
+                transform: translateY(7px) rotate(-45deg);
+            }
+        }
+    }
+
+    .line {
+        width: 20px;
+        height: 2px;
+    }
+
+    .title {
+        font-size: 1.2em;
+        text-underline-offset: 4px;
+        margin-top: 35px;
+    }
+
+    .logInButton {
+        margin: 15px auto 0 auto;
+        font-size: 1.2em;
+        border: 2px solid black;
+        border-radius: 9px;
+    }
+
+    .orText {
+        font-size: 0.8em;
+        margin-left: 85px;
+    }
+
+    .registerButton {
+        font-size: 1.2em;
+        border: 2px solid black;
+        border-radius: 9px;
+    }
+
+    .loginTitle {
+        font-size: 1.2em;
+        margin-top: 30px;
+    }
+
+    .mainContainer {
+        margin-top: 45px;
+    }
+
+    .inputField {
+        width: 190px;
+        height: 26px;
+        border-radius: 10px;
+        font-size: 0.8em;
+        padding-left: 6px;
+        margin-top: 12px;
+    }
+
+    .rememberMe {
+        margin: 5px 0 3px 0;
+    }
+
+    .rememberMeCheckbox {
+        margin-left: 10px;
+        width: 12px;
+    }
+
+    .rememberMeText {
+        font-size: 0.8em;
+        margin-left: 2px;
+        margin-top: 2px;
+    }
+
+    .loginSubmitButton {
+        margin: 2px auto 0 auto;
+        font-size: 1em;
+        border: 2px solid black;
+        border-radius: 8px;
+    }
+
+    .continueWithContainer {
+        margin-top: 5px;
+    }
+
+    .continueWith {
+        font-size: 0.8em;
+    }
+
+    .societyContainer {
+        margin-top: 5px;
+    }
+
+    .googleIcon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .yandexIcon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .vkIcon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .errorText {
+        font-size: 0.6em;
+        margin: 5px auto 0 auto;
+    }
+
+    .registerModal {
+        width: 200px;
+        height: 355px;
+        transform: translate(-50%, 15%);
+    }
+
+    .registerSubmitButton {
+        margin: 2px auto 0 auto;
+        font-size: 1em;
+        border: 2px solid black;
+        border-radius: 8px;
+    }
+}
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+    .modal {
+        width: 450px;
+        height: 210px;
+        transform: translate(-50%, 20%);
+    }
+
+    .closeButton {
+        margin-left: 420px;
+
+        .line {
+            &:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            &:nth-child(2) {
+                transform: translateY(7px) rotate(-45deg);
+            }
+        }
+    }
+
+    .line {
+        width: 20px;
+        height: 2px;
+    }
+
+    .title {
+        font-size: 1.3em;
+        margin-top: 10px;
+        text-underline-offset: 4px;
+    }
+
+    .logInButton {
+        margin: 15px auto 0 auto;
+        font-size: 1.2em;
+        border: 2px solid black;
+        border-radius: 9px;
+    }
+
+    .orText {
+        font-size: 0.8em;
+        margin-left: 210px;
+    }
+
+    .registerButton {
+        font-size: 1.2em;
+        border: 2px solid black;
+        border-radius: 9px;
+    }
+
+    .loginTitle {
+        font-size: 1.2em;
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+
+    .mainContainer {
+        margin-top: 45px;
+        flex-direction: row;
+    }
+
+    .loginForm {
+        width: 50%;
+        transform: translateY(-10px);
+    }
+
+    .inputField {
+        width: 190px;
+        height: 26px;
+        border-radius: 10px;
+        font-size: 0.8em;
+        padding-left: 6px;
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    .rememberMe {
+        margin: 5px 0 3px 3px;
+    }
+
+    .rememberMeCheckbox {
+        width: 12px;
+        margin: 0;
+    }
+
+    .rememberMeText {
+        font-size: 0.8em;
+    }
+
+    .loginSubmitButton {
+        margin: 5px 0 0 60px;
+        font-size: 1em;
+        border: 2px solid black;
+        border-radius: 8px;
+    }
+
+    .continueWithContainer {
+        margin-top: 2px;
+        justify-content: start;
+    }
+
+    .continueWith {
+        font-size: 0.8em;
+    }
+
+    .societyContainer {
+        margin-top: 5px;
+    }
+
+    .googleIcon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .yandexIcon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .vkIcon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .errorText {
+        font-size: 0.6em;
+        margin: 5px 0 0 25px;
+    }
+
+    .registerModal {
+        width: 450px;
+        height: 280px;
+        transform: translate(-50%, 2%);
+    }
+
+    .registerSubmitButton {
+        font-size: 1em;
+        border: 2px solid black;
+        border-radius: 8px;
+        margin: 5px 0 0 10px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .modal {
+        width: 300px;
+        height: 320px;
+        transform: translate(-50%, 40%);
+    }
+
+    .closeButton {
+        margin-left: 273px;
+
+        .line {
+            &:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            &:nth-child(2) {
+                transform: translateY(7px) rotate(-45deg);
+            }
+        }
+    }
+
+    .line {
+        width: 20px;
+        height: 2px;
+    }
+
+    .title {
+        font-size: 1.5em;
+        margin-top: 35px;
+        text-underline-offset: 4px;
+    }
+
+    .logInButton {
+        margin: 20px auto 0 auto;
+        font-size: 1.5em;
+        border: 2px solid black;
+        border-radius: 9px;
+    }
+
+    .orText {
+        font-size: 0.9em;
+        margin-left: 135px;
+    }
+
+    .registerButton {
+        font-size: 1.5em;
+        border: 2px solid black;
+        border-radius: 9px;
+    }
+
+    .loginTitle {
+        font-size: 1.5em;
+        margin-top: 25px;
+    }
+
+    .mainContainer {
+        margin-top: 60px;
+    }
+
+    .inputField {
+        width: 190px;
+        height: 28px;
+        border-radius: 10px;
+        font-size: 0.9em;
+        padding-left: 6px;
+        margin-top: 10px;
+    }
+
+    .rememberMe {
+        margin: 7px 0 3px 45px;
+    }
+
+    .rememberMeCheckbox {
+        width: 12px;
+        margin-left: 10px;
+    }
+
+    .rememberMeText {
+        font-size: 0.8em;
+        margin-left: 2px;
+        margin-top: 2px;
+    }
+
+    .loginSubmitButton {
+        margin: 5px auto 0 auto;
+        font-size: 1.2em;
+        border: 2px solid black;
+        border-radius: 8px;
+    }
+
+    .continueWithContainer {
+        margin-top: 10px;
+        justify-content: start;
+    }
+
+    .continueWith {
+        font-size: 1em;
+    }
+
+    .societyContainer {
+        margin-top: 5px;
+    }
+
+    .googleIcon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .yandexIcon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .vkIcon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .errorText {
+        font-size: 0.8em;
+        margin: 5px auto 0 auto;
+    }
+
+    .registerModal {
+        width: 300px;
+        height: 420px;
+        transform: translate(-50%, 15%);
+    }
+
+    .registerSubmitButton {
+        font-size: 1.2em;
+        border: 2px solid black;
+        border-radius: 8px;
+        margin: 5px auto 0 auto;
     }
 }

@@ -1,6 +1,7 @@
 import { ClothesTypesEnum } from "../helpers/ClothesTypesEnum";
+import { ProductsBaseType } from "../helpers/Types";
 
-export const Hoodies = [
+export const Hoodies: ProductsBaseType = [
     {
         title: "Худи черная",
         image: "/images/BlackTShirt.jpg",
